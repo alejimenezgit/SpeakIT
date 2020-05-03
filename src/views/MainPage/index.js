@@ -7,8 +7,15 @@ export default class MainPage extends React.Component {
 
     renderMainPage  = () => {
         return (
-            <div className="home">
-                hola
+            <div className="container">
+                <div className="box"> 
+                </div>
+                <div className="box"> 
+                </div>
+                <div className="box"> 
+                </div>
+                <div className="box"> 
+                </div>
             </div>
         );
     }
