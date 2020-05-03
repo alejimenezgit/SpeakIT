@@ -1,21 +1,21 @@
 T## README Modulo3
 
-##  -------------------------------- Project Name: ------------------------------------
+# Project Name: 
 SPEAKIT
 
-## -------------------------------------- Creator --------------------------------------
+# Creator 
 Alejandro Jimenez Regalon 
 
-## ------------------------------ What is SPEAKIT? ------------------------------
+#  What is SPEAKIT? 
 SPEAKIT is an online app that helps you find a person who speak the language that you want speak and the other person the same.
 
-## ------------------------------------ Languages -----------------------------------------
+# Languages 
 - HTML, CSS
 - Back end
 - JavaScript (REACT)
 - MongoDB
 
-## ------------------------------ App functionnalities ------------------------------
+# App functionnalities 
 - Registro de usuarios
 - Seleccionar por diferentes layouts los idiomas
 - Tener los contactos del mismo idioma en el mismo layout
@@ -24,7 +24,7 @@ SPEAKIT is an online app that helps you find a person who speak the language tha
 - Poder tener una conversación
 
 
-## ROUTES del front
+# ROUTES del front
 |   Method   |  Endpoint    |     Description  | Views |
 |------------|--------------|------------------|------------------|
 |    GET     |    /         |               HomePage                        |       
@@ -42,7 +42,7 @@ SPEAKIT is an online app that helps you find a person who speak the language tha
 |    GET     |    /register |               Register page                   |
 |    POST    |    /register |               Send user and get the cookie    |
 
-## ------------------------------ MODELS ------------------------------
+# MODELS 
 
 ```javascript
 User model
@@ -74,15 +74,15 @@ User language
 
 ```
 
-##  ------------------------------ CRUD -------------------------------------
+#  CRUD 
 - Create: Partner can create a venue, and events for each venue
 - Read: both users can read artists, venues and events
 - Update: Partner can change venue and events
 - Delete: Partner can delete venues and events
 
-## -------------------------- Dependencies ----------------------------------
+# Dependencies 
 - ... (tokbox)
-## ------------------------------ Links --------------------------------------
+# Links 
 
 |   APP    |  LINK    |  
 |-------------|--------------|
