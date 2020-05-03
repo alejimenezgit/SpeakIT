@@ -75,10 +75,12 @@ User language
 ```
 
 #  CRUD 
-- Create: Partner can create a venue, and events for each venue
-- Read: both users can read artists, venues and events
-- Update: Partner can change venue and events
-- Delete: Partner can delete venues and events
+- Create: 
+- Read: 
+- Update: 
+- Delete: 
+
+
 
 # Dependencies 
 - ... (tokbox)
