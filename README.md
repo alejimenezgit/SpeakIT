@@ -1,68 +1,93 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+T## README Modulo3
 
-## Available Scripts
+##  -------------------------------- Project Name: ------------------------------------
+SPEAKIT
 
-In the project directory, you can run:
+## -------------------------------------- Creator --------------------------------------
+Alejandro Jimenez Regalon 
 
-### `yarn start`
+## ------------------------------ What is SPEAKIT? ------------------------------
+SPEAKIT is an online app that helps you find a person who speak the language that you want speak and the other person the same.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ------------------------------------ Languages -----------------------------------------
+- HTML, CSS
+- Back end
+- JavaScript (REACT)
+- MongoDB
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## ------------------------------ App functionnalities ------------------------------
+- Registro de usuarios
+- Seleccionar por diferentes layouts los idiomas
+- Tener los contactos del mismo idioma en el mismo layout
+- Poder tener llamar
+- Poder tener una videollamada
+- Poder tener una conversación
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ROUTES del front
+|   Method   |  Endpoint    |     Description  | Views |
+|------------|--------------|------------------|------------------|
+|    GET     |    /         |               HomePage                        |       
+|    GET     |    /login    |               Login page                      |
+|    POST    |    /login    |               Send user info and logged in    |   
+|    GET     |    /register |               Register page                   |
+|    POST    |    /register |               Send user and get the cookie    |
 
-### `yarn build`
+## ROUTES del back (api)
+|   Method   |  Endpoint    |     Description  | Views |
+|------------|--------------|------------------|------------------|
+|    GET     |    /         |               HomePage                        |       
+|    GET     |    /login    |               Login page                      |
+|    POST    |    /login    |               Send user info and logged in    |   
+|    GET     |    /register |               Register page                   |
+|    POST    |    /register |               Send user and get the cookie    |
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ------------------------------ MODELS ------------------------------
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```javascript
+User model
+    {
+        id_user:        { Type: ObjectId(), required: true, unique: true}
+        name:           { Type: String, required: true }
+        surnames:       { Type: String, required: true }
+        email:          { type: String, required: true , unique: true}
+        password:       { Type: String, required: true }
+        hash:           { Type: String, required: true, unique: true}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+        // tendra que tener lista de los lenguages
+        // los contactos que tendra
+        // valoracion
+        // opiniones
+    }   
 
-### `yarn eject`
+User language 
+    {
+        id_language:     { Type: ObjectId(), required: true, unique: true}
+        name:            { Type: String, required: true}
+        level:           { Type: Number, required: true}
+        
+        // lista de las personas que tienen que 
+    }
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
 
-## Learn More
+##  ------------------------------ CRUD -------------------------------------
+- Create: Partner can create a venue, and events for each venue
+- Read: both users can read artists, venues and events
+- Update: Partner can change venue and events
+- Delete: Partner can delete venues and events
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## -------------------------- Dependencies ----------------------------------
+- ... (tokbox)
+## ------------------------------ Links --------------------------------------
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+|   APP    |  LINK    |  
+|-------------|--------------|
+|    TRELLO     |    |           
+|    GITHUB     |    |               
+|    HEROKU     |    |              
+|    SLIDES     |    |              
+|    MOCKUPS    |    |
