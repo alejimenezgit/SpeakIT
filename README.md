@@ -7,75 +7,91 @@ SPEAKIT
 Alejandro Jimenez Regalon 
 
 #  What is SPEAKIT? 
-SPEAKIT is an online app that helps you find a person who speak the language that you want speak and the other person the same.
+SPEAKIT is an online web that helps you find a person who speaks the language you want to learn both by video call or chat
 
 # Languages 
-- HTML, CSS
-- Back end
-- JavaScript (REACT)
+- HTML
+- CSS
+- SASS
+- Node JS
+- React JS
 - MongoDB
 
 # App functionnalities 
 - Registro de usuarios
 - Seleccionar por diferentes layouts los idiomas
 - Tener los contactos del mismo idioma en el mismo layout
+- Hacer busqueda avanzada de usuarios
 - Poder tener llamar
 - Poder tener una videollamada
 - Poder tener una conversación
 
 
 # ROUTES del front
-|   Method   |  Endpoint    |     Description  | Views |
-|------------|--------------|------------------|------------------|
-|    GET     |    /         |               HomePage                        |       
-|    GET     |    /login    |               Login page                      |
-|    POST    |    /login    |               Send user info and logged in    |   
-|    GET     |    /register |               Register page                   |
-|    POST    |    /register |               Send user and get the cookie    |
+|   Path          |   View  
+|-----------------|---------------------
+|   /             |   HomePage  
+|   /login        |   Login    
+|   /register     |   HomePage    
+|   /mainpage     |   Main Page         
+
+
 
 ## ROUTES del back (api)
-|   Method   |  Endpoint    |     Description  | Views |
-|------------|--------------|------------------|------------------|
-|    GET     |    /         |               HomePage                        |       
-|    GET     |    /login    |               Login page                      |
-|    POST    |    /login    |               Send user info and logged in    |   
-|    GET     |    /register |               Register page                   |
-|    POST    |    /register |               Send user and get the cookie    |
+|   Method   |  Endpoint                |     Description                          |       Body
+|------------|--------------------------|------------------------------------------|------
+|    GET     |    /user/:id             |     Get an user                          |
+|    GET     |    /randomUser           |     Get a random user                    |
+|    GET     |    /languages            |     Get all the languages                |
+|    GET     |    /languagesUser/:id    |     Get all the languages by User        |
+|    GET     |    /allUser              |     Get all the users (with param ?)     |
+|    POST    |    /user                 |     Create an user                       |
+|    POST    |    /language             |     Create a language by user            |
+|    DELETE  |    /user                 |     Delete a user                        |
+|    DELETE  |    /language             |     Delete a language by user            |
+|    PUT     |    /user                 |     Update a user                        |
+|    PATH    |    /language             |     Update a language by user            |
+
+?¿ add a language 
+?¿ delete a language
 
 # MODELS 
 
 ```javascript
-User model
+    User model
     {
         id_user:        { Type: ObjectId(), required: true, unique: true}
-        name:           { Type: String, required: true }
-        surnames:       { Type: String, required: true }
-        email:          { type: String, required: true , unique: true}
-        password:       { Type: String, required: true }
-        hash:           { Type: String, required: true, unique: true}
-
-        // tendra que tener lista de los lenguages
-        // los contactos que tendra
-        // valoracion
-        // opiniones
+        name:           { Type: String,     required: true }
+        surnames:       { Type: String,     required: true }
+        foto:           { Type: String      required: true }
+        email:          { type: String,     required: true , unique: true}
+        password:       { Type: String,     required: true }
+        languages:      { Type: Array,      required: true }
+        hash:           { Type: String,     required: true, unique: true}
+        listContacts:   { Type: Array,      }
+        puntuación:     { Type: Number }
     }   
 
-User language 
+
+    Language model
     {
         id_language:     { Type: ObjectId(), required: true, unique: true}
-        name:            { Type: String, required: true}
-        level:           { Type: Number, required: true}
-        
-        // lista de las personas que tienen que 
+        name:            { Type: String,     required: true}
     }
 
 
 
+    Language-User model
+    {
+        id_language_user:    { Type: ObjectId(), required: true, unique: true}
+        level:               { Type: Number,     required: true}
+        id_language:         { Type: ObjectId(), required: true}
+    }
 
 ```
 
 #  CRUD 
-- Create: 
+- Create: a User, 
 - Read: 
 - Update: 
 - Delete: 
