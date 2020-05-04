@@ -91,21 +91,37 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 ```
 
 #  CRUD 
-- Create: a User, 
-- Read: 
-- Update: 
-- Delete: 
+### Create:
+    1) A user
+    2) A language
+
+### Read: 
+    1) A user
+    2) A user Radom
+    3) All the Languages
+    4) All the users
+
+### Update: 
+    1) A user
+    2) A language
+
+### Delete: 
+    1) A user
+    2) A language
+
 
 
 
 # Dependencies 
 - ... (tokbox)
+
+
 # Links 
 
-|   APP    |  LINK    |  
-|-------------|--------------|
-|    TRELLO     |    |           
-|    GITHUB     |    |               
-|    HEROKU     |    |              
-|    SLIDES     |    |              
-|    MOCKUPS    |    |
+|   APP         |  LINK    |  
+|---------------|--------------|
+|    TRELLO     |           |           
+|    GITHUB     |  https://github.com/alejimenezgit/SpeakIT         |               
+|    HEROKU     |           |              
+|    SLIDES     |           |              
+|    MOCKUPS    |           |
