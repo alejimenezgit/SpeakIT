@@ -13,6 +13,7 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 - HTML
 - CSS
 - SASS
+- Style Component
 - Node JS
 - React JS
 - MongoDB
