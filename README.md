@@ -1,4 +1,4 @@
-T## README Modulo3
+# README Modulo3
 
 # Project Name: 
 SPEAKIT
@@ -38,23 +38,33 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 
 
 
-## ROUTES del back (api)
-|   Method   |  Endpoint                |     Description                          |       Body
-|------------|--------------------------|------------------------------------------|------
-|    GET     |    /user/:id             |     Get an user                          |
-|    GET     |    /randomUser           |     Get a random user                    |
-|    GET     |    /languages            |     Get all the languages                |
-|    GET     |    /languagesUser/:id    |     Get all the languages by User        |
-|    GET     |    /allUser              |     Get all the users (with param ?)     |
-|    POST    |    /user                 |     Create an user                       |
-|    POST    |    /language             |     Create a language by user            |
-|    DELETE  |    /user                 |     Delete a user                        |
-|    DELETE  |    /language             |     Delete a language by user            |
-|    PUT     |    /user                 |     Update a user                        |
-|    PATH    |    /language             |     Update a language by user            |
-
-?¿ add a language 
-?¿ delete a language
+# ROUTES del back (api)
+|  Method           |    Endpoint Routes Backend     |     Description                          |       Body
+|-------------------|--------------------------------|------------------------------------------|-----------------------
+|    GET            |    `/user/`                    |     Get an user                          | `{ username, password }`
+|    GET            |    `/user/random`              |     Get a random user                    |
+|    GET            |    `/user/all`                 |     Get all the users (with param ?)     |
+|    POST           |    `/user/add`                 |     Create an user                       |
+|    PUT            |    `/user/update`              |     Update a user                        |
+|    DELETE         |    `/user/delete `             |     Delete a user                        |
+|-------------------|--------------------------------|------------------------------------------|-----------------------
+|    GET            |    `/language/`                |     Get a language                       |
+|    GET            |    `/language/all`             |     Get all the languages                |
+|    POST           |    `/language/add`             |     Create a language                    |
+|    PUT            |    `/language/update`          |     Update a language                    |
+|    DELETE         |    `/language/delete`          |     Delete a language                    |
+|-------------------|--------------------------------|------------------------------------------|-----------------------
+|    GET            |    `/languageUser/`            |     Get a language by User               |
+|    GET            |    `/languageUser/all`         |     Get all the languages by User        |
+|    POST           |    `/languageUser/add`         |     Create a language by User            |
+|    PUT            |    `/languageUser/update`      |     Update a language by User            |
+|    DELETE         |    `/languageUser/delete`      |     Delete a language by User            |
+|-------------------|--------------------------------|------------------------------------------|-----------------------
+|    GET            |    `/comunication/`            |     Get a language comunication          |
+|    GET            |    `/comunication/all`         |     Get all the languages comunications  |
+|    POST           |    `/comunication/add`         |     Create a language comunication       |
+|    PUT            |    `/comunication/update`      |     Update a language comunication       |
+|    DELETE         |    `/comunication/delete`      |     Delete a language comunication       |
 
 # MODELS 
 
@@ -67,12 +77,11 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
         foto:           { Type: String      required: true }
         email:          { type: String,     required: true , unique: true}
         password:       { Type: String,     required: true }
-        languages:      { Type: Array,      required: true }
-        hash:           { Type: String,     required: true, unique: true}
-        listContacts:   { Type: Array,      }
         puntuación:     { Type: Number }
+        hash:           { Type: String,     required: true, unique: true}
+        languages:      { Type: Array,      required: true }
+        comunications:  { Type: Array }
     }   
-
 
     Language model
     {
@@ -80,15 +89,19 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
         name:            { Type: String,     required: true}
     }
 
-
-
-    Language-User model
+    LanguageUser model
     {
         id_language_user:    { Type: ObjectId(), required: true, unique: true}
         level:               { Type: Number,     required: true}
         id_language:         { Type: ObjectId(), required: true}
     }
 
+    Comunication model
+    {
+        id_language_user:    { Type: ObjectId(), required: true, unique: true}
+        language:            { Type: Number,     required: true}                 // es objectid de language
+        users:               { Type: Array,       required: true}                // Array de objectid de User
+    }
 ```
 
 #  CRUD 
@@ -127,6 +140,3 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 |    HEROKU     |           |              
 |    SLIDES     |           |              
 |    MOCKUPS    |           |
-
-
-https://github.com/alejimenezgit/API-SpeakIT
