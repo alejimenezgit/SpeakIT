@@ -1,7 +1,6 @@
 body {
   padding-top: 60px;
   font-family: Helvetica, sans-serif;
-  background-color: #558fb9;
 }
 .container {
   width: 80%;
@@ -14,7 +13,14 @@ a {
 }
 
 .header {
-  background-color: #fff;
+  background: rgba(73,155,234,1);
+  background: -moz-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(204,79,173,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(73,155,234,1)), color-stop(100%, rgba(204,79,173,1)));
+  background: -webkit-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(204,79,173,1) 100%);
+  background: -o-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(204,79,173,1) 100%);
+  background: -ms-linear-gradient(left, rgba(73,155,234,1) 0%, rgba(204,79,173,1) 100%);
+  background: linear-gradient(to right, rgba(73,155,234,1) 0%, rgba(204,79,173,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', endColorstr='#cc4fad', GradientType=1 );
   -webkit-box-shadow: -1px 5px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: -1px 5px 5px 0px rgba(0,0,0,0.75);
   box-shadow: -1px 5px 5px 0px rgba(0,0,0,0.75);
@@ -29,7 +35,6 @@ a {
   padding: 0;
   list-style: none;
   overflow: hidden;
-  background-color: #fff;
 }
 
 .header li a {

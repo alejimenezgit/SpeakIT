@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 
+import Login from './views/Login'
 import MainPage from './views/MainPage'
 import Header from './components/Header'
 
@@ -12,6 +13,7 @@ function App() {
       <Header />
       <Router>
         <Switch>
+          <Route exact path="/login" component={Login}/>
           <Route exact path="/" component={MainPage}/>
         </Switch>
       </Router>

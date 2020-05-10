@@ -1,25 +1,27 @@
 import React from 'react';
-import "./styles.css";
+import "./styles.scss";
 
-//import Button from '../Button';
+import { BrowserRouter as Router, Link} from "react-router-dom";
 
 export default class Header extends React.Component {
 
     renderHeader  = () => {
         return (
+            <Router>
                 <header className="header">
                     <div className="container">
-                        <a className="logo">Speak IT</a>
+                        <div className="logo">Speak IT</div>
                         <input className="menu-btn" type="checkbox" id="menu-btn" />
                         <label className="menu-icon" htmlFor="menu-btn">
                             <span className="navicon"></span>
                         </label>
                         <ul className="menu">
-                            <li><a href="#work">Log in</a></li>
-                            <li><a href="#about">Sign up</a></li>
+                            <li><Link to={'/login'}>Log in</Link></li>
+                            <li><Link to="#about">Sign up</Link></li>
                         </ul>
                     </div>
                 </header>
+            </Router>
         );
     }
 
