@@ -39,27 +39,27 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 
 
 # ROUTES del back (api)
-|  Method           |    Endpoint Routes Backend     |     Description                          |       Body
-|-------------------|--------------------------------|------------------------------------------|-------------------------
-|    POST            |    `/user/`                    |     Get an user                         | `{ username, password }`
+|  Method           |    Endpoint Routes Backend     |     Description                          |   
+|-------------------|--------------------------------|------------------------------------------|
+|    POST           |    `/user/`                    |     Get an user                          | 
 |    GET            |    `/user/random`              |     Get a random user                    |
 |    GET            |    `/user/all`                 |     Get all the users (with param ?)     |
 |    POST           |    `/user/add`                 |     Create an user                       |
-|    PUT            |    `/user/update`              |     Update a user                        |
+|    PUT            |    `/user/update`              |     Update a user                        | 
 |    DELETE         |    `/user/delete `             |     Delete a user                        |
-|-------------------|--------------------------------|------------------------------------------|-------------------------
+|-------------------|--------------------------------|------------------------------------------|
 |    GET            |    `/language/`                |     Get a language                       |
 |    GET            |    `/language/all`             |     Get all the languages                |
 |    POST           |    `/language/add`             |     Create a language                    |
 |    PUT            |    `/language/update`          |     Update a language                    |
 |    DELETE         |    `/language/delete`          |     Delete a language                    |
-|-------------------|--------------------------------|------------------------------------------|-------------------------
+|-------------------|--------------------------------|------------------------------------------|
 |    GET            |    `/languageUser/`            |     Get a language by User               |
 |    GET            |    `/languageUser/all`         |     Get all the languages by User        |
 |    POST           |    `/languageUser/add`         |     Create a language by User            |
 |    PUT            |    `/languageUser/update`      |     Update a language by User            |
 |    DELETE         |    `/languageUser/delete`      |     Delete a language by User            |
-|-------------------|--------------------------------|------------------------------------------|-------------------------
+|-------------------|--------------------------------|------------------------------------------|
 |    GET            |    `/comunication/`            |     Get a language comunication          |
 |    GET            |    `/comunication/all`         |     Get all the languages comunications  |
 |    POST           |    `/comunication/add`         |     Create a language comunication       |
@@ -86,14 +86,14 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 ## Language model
 ```javascript
     {
-        id_language:     { Type: ObjectId(), required: true, unique: true}
+        id_language:     { Type: ObjectId(), required: true}
         language:        { Type: String,     required: true}
     }
 ```
 ## LanguageUser model
 ```javascript
     {
-        id_language_user:    { Type: ObjectId(), required: true, unique: true}
+        id_language_user:    { Type: ObjectId(), required: true}
         level:               { Type: Number,     required: true}
         id_language:         { Type: ObjectId(), required: true}
     }
@@ -101,9 +101,9 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 ## Comunication model
 ```javascript
     {
-        id_language_user:    { Type: ObjectId(), required: true, unique: true}
+        id_language_user:    { Type: ObjectId(), required: true}
         language:            { Type: Number,     required: true}                 // es objectid de language
-        users:               { Type: Array,       required: true}                // Array de objectid de User
+        users:               { Type: Array,      required: true}                // Array de objectid de User
     }
 ```
 
