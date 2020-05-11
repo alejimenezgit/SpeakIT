@@ -1,5 +1,7 @@
 .box{
-    background-color: #e8e8e8;
+    border: 1px solid rgba(147,206,222,1);
+    background-color: white;
+    border-radius: 1em;
     height: 500px;
     margin-top: 50px;
 }

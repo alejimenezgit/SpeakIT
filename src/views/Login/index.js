@@ -2,11 +2,13 @@ import React from 'react';
 import "./styles.scss";
 import Header from '../../components/Header';
 import Input from '../../components/Input';
+import LabelForm from '../../components/LabelForm';
 
 export default class Login extends React.Component {
 
     state = {
-        name: '',
+        email: '',
+        password: ''
     }
 
     handleInput = (e) => {
@@ -16,24 +18,18 @@ export default class Login extends React.Component {
     }
 
     renderLogin  = () => {
-        const { name } = this.state;
+        const { email, password } = this.state;
         return (
             <div>
                 <Header />
                 <div className="container"> 
-                    <div>
-                        <Input title='Name' styles="form" name="name" type="text" value={name} action={this.handleInput}/>
-                    </div>
-                    <div class="container">
-                        <form action="#">
-                            <input type="text" required />
-                            <label for="" placeholder="Your Full Name" alt="Full Name"></label>
-                            <input type="Email" required />
-                            <label for="" placeholder="Your Email Address" alt="Email"></label>
-                            <textarea required></textarea>
-                            <label for="" placeholder="Your Message" alt="Message"></label>
-                        </form>
-                    </div>
+                    <form className="form">
+                        <Input name="email" type="Email" value={email} action={this.handleInput}/>
+                        <LabelForm placeholder="Your Email Address" alt="Email"/>
+
+                        <Input name="password" type="Password" value={password} action={this.handleInput}/>
+                        <LabelForm placeholder="Your Password" alt="password"/>
+                    </form>
                 </div> 
             </div>
         );

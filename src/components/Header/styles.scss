@@ -12,7 +12,8 @@ a {
   color: #000;
 }
 
-.header {background: rgba(147,206,222,1);
+.header {
+  background: rgba(147,206,222,1);
   background: -moz-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 53%, rgba(73,165,191,1) 100%);
   background: -webkit-gradient(left top, right top, color-stop(0%, rgba(147,206,222,1)), color-stop(53%, rgba(117,189,209,1)), color-stop(100%, rgba(73,165,191,1)));
   background: -webkit-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 53%, rgba(73,165,191,1) 100%);

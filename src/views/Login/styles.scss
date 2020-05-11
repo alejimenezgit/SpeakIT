@@ -1,3 +1,10 @@
+.form {
+    padding-top: 80px;
+    width: 22em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 HTML SCSSResult
 EDIT ON
 // Adaptive Placeholders. 
@@ -86,7 +93,6 @@ $adaptive-placeholder: ();
 
   // Input / Textarea properties
   background-color: $placeholder-background;
-  height: calc(#{$height} + #{$borders});
   padding: $margin;
   font-size: $font-size;
   border: $border solid $border-color;
@@ -194,18 +200,6 @@ $adaptive-placeholder: ();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // Start paying attention here! 
 
 // Set Defaults for Adaptive Placeholder 
@@ -226,6 +220,7 @@ $textarea-placeholder: (
 
 
 // Calling adaptive placeholder for input
+input[type='password'],
 input[type='email'],
 input[type='text'] {
   width: 18em;
@@ -237,5 +232,3 @@ textarea {
   width: 18em;
   @include adaptive-placeholder($textarea-placeholder);
 }
-
-
