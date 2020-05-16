@@ -3,7 +3,6 @@ import "./styles.scss";
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import LabelForm from '../../components/LabelForm';
-import apiClient from "../../services/users";
 
 export default class Login extends React.Component {
 

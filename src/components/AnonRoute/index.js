@@ -9,7 +9,7 @@ function AnonRoute({ children, isLoggedIn, ...rest }) {
         !isLoggedIn ? (children) : (
           <Redirect
             to={{
-                pathname: "/",
+                pathname: "/main",
                // state: { from: location },
             }}
           />

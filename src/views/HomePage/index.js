@@ -1,9 +1,9 @@
 import React from 'react';
-import "./styles.scss";
+import "./styles.css";
 
 import Header from '../../components/Header'
 
-export default class MainPage extends React.Component {
+export default class HomePage extends React.Component {
 
     renderMainPage  = () => {
         return (
@@ -11,7 +11,6 @@ export default class MainPage extends React.Component {
                 <Header />
                 <div className="container">
                 <div className="box"> 
-                main
                 </div>
                 <div className="box"> 
                 </div>

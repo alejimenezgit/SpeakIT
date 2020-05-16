@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import Login from './views/Login'
-import Register from './views/Register'
-import MainPage from './views/MainPage'
-import AnonRoute from './components/AnonRoute'
+import Login from './views/Login';
+import Register from './views/Register';
+import MainPage from './views/MainPage';
+import HomePage from './views/HomePage';
+import AnonRoute from './components/AnonRoute';
 
-import { BrowserRouter as Router,Route,Switch} from "react-router-dom";
+import {Route,Switch} from "react-router-dom";
 
 import apiClient from "./services/users";
+
 
 class App extends Component {
 
@@ -39,10 +41,28 @@ class App extends Component {
       });
   }
 
-  handleLogin = ({ username, password }) => {
+  handleLogin = ({ email, password }) => {
     apiClient
-      .login({ username, password })
+      .getUserLogin({ email, password })
       .then(({ data: user }) => {
+        this.setState({
+          isLoggedIn: true,
+          user,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          isLoggedIn: false,
+          user: null,
+        });
+      });
+  };
+
+  handleRegister = ({ name, surnames, email, password }) => {
+    apiClient
+      .getUserRegister({ name, surnames, email, password })
+      .then(({ data: user }) => {
+        console.log({ data: user })
         this.setState({
           isLoggedIn: true,
           user,
@@ -64,12 +84,14 @@ class App extends Component {
         {isLoading && <div> Loading.......</div>}
         {!isLoading && (
           <Switch>
-            <Route path="/register" component={Register}/>
             <AnonRoute exact path={'/login'} isLoggedIn={isLoggedIn}>
               <Login onLogin={this.handleLogin} /> 
             </AnonRoute>
-            <Route path="/login" component={Login}/>
-            <Route path="/" component={MainPage}/>
+            <AnonRoute exact path={'/register'} isLoggedIn={isLoggedIn}>
+              <Register onRegister={this.handleRegister} />
+            </AnonRoute>
+            <Route path="/main" component={MainPage}/>
+            <Route path="/" component={HomePage}/>
           </Switch>
         )}
       </div>

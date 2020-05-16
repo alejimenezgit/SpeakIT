@@ -14,12 +14,18 @@ class ApiClient {
     return this.apiClient.get(user + "/whouseris");
   }
 
-  getAllUsers() {
-    return this.apiClient.get(`${user}/all`);
+  getUserLogin(body) {
+    console.log('body',body)
+    return this.apiClient.post(`${user}/`, body);
   }
 
-  getUser(id) {
-    return this.apiClient.get(`${user}/${id}`);
+  getUserRegister(body) {
+    console.log('body',body)
+    return this.apiClient.post(`${user}/add`, body);
+  }
+
+  getAllUsers() {
+    return this.apiClient.get(`${user}/all`);
   }
 
   /*

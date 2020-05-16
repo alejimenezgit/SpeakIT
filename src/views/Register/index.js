@@ -7,7 +7,7 @@ export default class Login extends React.Component {
 
     state = {
         name: '',
-        surname: '',
+        surnames: '',
         email: '',
         password: ''
     }
@@ -18,17 +18,27 @@ export default class Login extends React.Component {
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { name, surnames, email, password } = this.state;
+        const { onRegister } = this.props;
+        if (email !== "" && password !== "" &&
+            name !== "" && surnames !== "") {
+                onRegister({ name, surnames, email, password });
+        }
+      };
+
     renderLogin  = () => {
-        const { name, surname, email, password } = this.state;
+        const { name, surnames, email, password } = this.state;
         return (
             <div>
                 <Header />
                 <div className="container"> 
-                    <form className="form"> 
+                    <form className="form" onSubmit={this.handleSubmit}>  
                         <Input name="name" type="text" value={name} action={this.handleInput}/>
                         <label htmlFor="" placeholder="Your Name" alt="Name"></label>
 
-                        <Input name="surname" type="text" value={surname} action={this.handleInput}/>
+                        <Input name="surnames" type="text" value={surnames} action={this.handleInput}/>
                         <label htmlFor="" placeholder="Your Surname" alt="Full Name"></label>
 
                         <Input name="email" type="Email" value={email} action={this.handleInput}/>
@@ -36,6 +46,8 @@ export default class Login extends React.Component {
 
                         <Input name="password" type="Password" value={password} action={this.handleInput}/>
                         <label htmlFor="" placeholder="Your Password" alt="password"></label>
+                    
+                        <input type="submit" value="submit" />
                     </form>
                 </div> 
             </div>
