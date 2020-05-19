@@ -11,8 +11,8 @@ export const withAuth = (Comp) => {
             return (
               <Comp
                 handleLogin={handleLogin}
-                onRegister={handleRegister}
-                onLogout={handleLogout}
+                handleRegister={handleRegister}
+                handleLogout={handleLogout}
                 user={user}
                 isLoggedIn={isLoggedIn}
                 {...this.props}
@@ -89,6 +89,7 @@ class AuthProvider extends Component {
     };
 
     handleLogout = () => {
+        console.log('entrada en logout')
         apiClient
             .logout()
             .then(() => {

@@ -2,34 +2,12 @@ import React from 'react';
 import "./styles.scss";
 
 import { Link } from "react-router-dom";
+import { withAuth } from '../../context/authContext';
 
-import apiClient from "../../services/users";
+class Header extends React.Component {
 
-import {Redirect} from "react-router-dom";
-
-export default class Header extends React.Component {
-/*
-    logOut = () =>{
-        apiClient
-        .logout()
-        .then(() => {
-            return (<Redirect
-                        to={{
-                        pathname: "/",
-                        }}
-                    />
-                )
-            
-        })
-        .catch((error) => {
-            console.log('error, no has salido -----------------------------------------')
-        });
-    }
-
-
-    <button onClick={this.logOut}>Salir </button>
-*/
     renderHeader  = () => {
+        const { handleLogout } = this.props;
         return (
             <header className="header">
                 <div className="container">
@@ -41,7 +19,7 @@ export default class Header extends React.Component {
                     <ul className="menu">
                         <li><Link to={'/login'}>Log in</Link></li>
                         <li><Link to={'/register'}>Sign up</Link></li>
-                        <button> </button>
+                        <button onClick={handleLogout}>  Log Out </button> 
                     </ul>
                 </div>
             </header>
@@ -52,3 +30,5 @@ export default class Header extends React.Component {
         return this.renderHeader();
     }
 }
+
+export default withAuth(Header);

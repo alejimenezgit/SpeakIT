@@ -1,8 +1,10 @@
 import React from 'react';
 import "./styles.scss";
+
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import LabelForm from '../../components/LabelForm';
+
 import { withAuth } from '../../context/authContext';
 
 class Login extends React.Component {

@@ -11,7 +11,7 @@ function AnonRoute({ component: Comp, isLoggedIn, ...rest }) {
         !isLoggedIn ? <Comp {...props}/> : (
           <Redirect
             to={{
-                pathname: "/MainPage",
+                pathname: "/mainpage",
                // state: { from: location },
             }}
           />

@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 
 export default class HomePage extends React.Component {
 
-    renderMainPage  = () => {
+    renderHomePage  = () => {
         return (
             <div>
                 <Header />
@@ -25,6 +25,6 @@ export default class HomePage extends React.Component {
     }
 
     render(){
-        return this.renderMainPage();
+        return this.renderHomePage();
     }
 }

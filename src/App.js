@@ -17,10 +17,10 @@ class App extends Component {
     return (
       <AuthProvider>
         <Switch>
-          <AnonRoute exact path={'/login'} component={Login} />
-          <AnonRoute exact path={'/register'} component={Register} />
-          <PrivateRoute exact path={'/MainPage'} component={MainPage} />
-          <AnonRoute exact path={'/'} component={HomePage} />
+          <AnonRoute     exact path={'/login'}    component={Login} />
+          <AnonRoute     exact path={'/register'} component={Register} />
+          <PrivateRoute  exact path={'/mainpage'} component={MainPage} />
+          <AnonRoute     exact path={'/'}         component={HomePage} />
         </Switch>
       </AuthProvider>
     )
