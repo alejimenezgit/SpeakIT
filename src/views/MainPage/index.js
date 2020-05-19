@@ -10,18 +10,11 @@ export default class MainPage extends React.Component {
             <div>
                 <Header />
                 <div className="container">
-                <div className="box"> 
-                main
-                </div>
-                <div className="box"> 
-                </div>
-                <div className="box"> 
-                </div>
-                <div className="box"> 
+                    <div className="box"> 
+                        main
+                    </div>
                 </div>
             </div>
-            </div>
-            
         );
     }
 
