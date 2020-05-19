@@ -2,8 +2,9 @@ import React from 'react';
 import "./styles.scss";
 import Header from '../../components/Header';
 import Input from '../../components/Input';
+import { withAuth } from '../../context/authContext';
 
-export default class Login extends React.Component {
+class Register extends React.Component {
 
     state = {
         name: '',
@@ -58,3 +59,5 @@ export default class Login extends React.Component {
         return this.renderLogin();
     }
 }
+
+export default withAuth(Register)

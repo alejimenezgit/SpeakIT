@@ -1,0 +1,25 @@
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
+
+import { withAuth } from "../../context/authContext";
+
+function PrivateRoute({ component: Comp, isLoggedIn, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        isLoggedIn ? (
+          <Comp {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login"
+            }}
+          />
+        )
+      }
+    />
+  );
+}
+
+export default withAuth(PrivateRoute);

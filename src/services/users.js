@@ -28,11 +28,9 @@ class ApiClient {
     return this.apiClient.get(`${user}/all`);
   }
 
-  /*
-  updateUser(body,id) {
-    return this.apiClient.put(`${user}/${id}`, body);
+  logout(){
+    return this.apiClient.get(`${user}//logout`);
   }
-  */
 }
 
 const apiClient = new ApiClient();

@@ -3,8 +3,32 @@ import "./styles.scss";
 
 import { Link } from "react-router-dom";
 
-export default class Header extends React.Component {
+import apiClient from "../../services/users";
 
+import {Redirect} from "react-router-dom";
+
+export default class Header extends React.Component {
+/*
+    logOut = () =>{
+        apiClient
+        .logout()
+        .then(() => {
+            return (<Redirect
+                        to={{
+                        pathname: "/",
+                        }}
+                    />
+                )
+            
+        })
+        .catch((error) => {
+            console.log('error, no has salido -----------------------------------------')
+        });
+    }
+
+
+    <button onClick={this.logOut}>Salir </button>
+*/
     renderHeader  = () => {
         return (
             <header className="header">
@@ -17,6 +41,7 @@ export default class Header extends React.Component {
                     <ul className="menu">
                         <li><Link to={'/login'}>Log in</Link></li>
                         <li><Link to={'/register'}>Sign up</Link></li>
+                        <button> </button>
                     </ul>
                 </div>
             </header>

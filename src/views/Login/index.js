@@ -3,8 +3,9 @@ import "./styles.scss";
 import Header from '../../components/Header';
 import Input from '../../components/Input';
 import LabelForm from '../../components/LabelForm';
+import { withAuth } from '../../context/authContext';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
     state = {
         email: '',
@@ -20,9 +21,10 @@ export default class Login extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const { email, password } = this.state;
-        const { onLogin } = this.props;
+        console.log(this.props)
+        const { handleLogin } = this.props;
         if (email !== "" && password !== "") {
-          onLogin({ email, password });
+            handleLogin({ email, password });
         }
       };
 
@@ -50,3 +52,5 @@ export default class Login extends React.Component {
         return this.renderLogin();
     }
 }
+
+export default withAuth(Login);
