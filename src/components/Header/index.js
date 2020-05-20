@@ -10,6 +10,7 @@ class Header extends React.Component {
         const { handleLogout, isLoggedIn, user } = this.props;
         return (
             <header className="header">
+                
                 <div className="container">
                     <Link to={'/'}> <div className="logo">Speak IT</div> </Link>
                     <input className="menu-btn" type="checkbox" id="menu-btn" />
@@ -23,11 +24,26 @@ class Header extends React.Component {
                         </ul>
                     }
                     {isLoggedIn && 
-                        <ul className="menu">
-                            <li> {user.data.name}</li>
-                            <li className="profile"></li>
-                            <li> <button onClick={handleLogout}>  Log Out </button>  </li>
-                        </ul>
+                        <div>
+                            <div className="menu profileDesple">
+                                <ul>
+                                    <li> <div className="imgNav"> </div> 
+                                        <ul>
+                                            <li className="itemDesple"> 
+                                                <a> Profile </a>
+                                            </li>
+                                            <li className="itemDesple">
+                                                <a onClick={handleLogout} className="bttnlogout">  Log out </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <ul className="menu profileDespleMobile">
+                                <li><Link to={'/login'}>Profile</Link></li>
+                                <li><Link onClick={handleLogout}>Log out</Link></li>
+                            </ul>
+                        </div>
                     }
                 </div>
             </header>
