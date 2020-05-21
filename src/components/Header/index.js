@@ -13,18 +13,25 @@ class Header extends React.Component {
                 
                 <div className="container">
                     <Link to={'/'}> <div className="logo">Speak IT</div> </Link>
-                    <input className="menu-btn" type="checkbox" id="menu-btn" />
-                    <label className="menu-icon" htmlFor="menu-btn">
-                        <span className="navicon"></span>
-                    </label>
-                    {!isLoggedIn && 
-                        <ul className="menu">
-                            <li><Link to={'/login'}>Log in</Link></li>
-                            <li><Link to={'/register'}>Sign up</Link></li>
-                        </ul>
-                    }
-                    {isLoggedIn && 
+                    
+                    {!isLoggedIn 
+                        ? 
                         <div>
+                            <input className="menu-btn" type="checkbox" id="menu-btn" />
+                            <label className="menu-icon" htmlFor="menu-btn">
+                                <span className="navicon"></span>
+                            </label>
+                            <ul className="menu">
+                                <li><Link to={'/login'}>Log in</Link></li>
+                                <li><Link to={'/register'}>Sign up</Link></li>
+                            </ul> 
+                        </div>
+                        :
+                        <div>
+                            <input className="menu-btn" type="checkbox" id="menu-btn" />
+                            <label className="menu-icon" htmlFor="menu-btn">
+                                <span className="navicon"></span>
+                            </label>
                             <div className="menu profileDesple">
                                 <ul>
                                     <li> <div className="imgNav"> </div> 

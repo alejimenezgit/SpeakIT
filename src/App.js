@@ -7,6 +7,7 @@ import Register from './views/Register';
 import MainPage from './views/MainPage';
 import HomePage from './views/HomePage';
 
+import Header from './components/Header'
 import AnonRoute from './components/AnonRoute';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -16,11 +17,12 @@ class App extends Component {
   render(){
     return (
       <AuthProvider>
+        <Header />
         <Switch>
-          <AnonRoute     exact path={'/login'}    component={Login} />
-          <AnonRoute     exact path={'/register'} component={Register} />
-          <PrivateRoute  exact path={'/mainpage'} component={MainPage} />
-          <AnonRoute     exact path={'/'}         component={HomePage} />
+            <AnonRoute     exact path={'/login'}    component={Login} />
+            <AnonRoute     exact path={'/register'} component={Register} />
+            <PrivateRoute  exact path={'/mainpage'} component={MainPage} />
+            <AnonRoute     exact path={'/'}         component={HomePage} />
         </Switch>
       </AuthProvider>
     )

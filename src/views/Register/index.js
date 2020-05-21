@@ -1,6 +1,5 @@
 import React from 'react';
 import "./styles.scss";
-import Header from '../../components/Header';
 import Input from '../../components/Input';
 import { withAuth } from '../../context/authContext';
 
@@ -33,7 +32,6 @@ class Register extends React.Component {
         const { name, surnames, email, password } = this.state;
         return (
             <div>
-                <Header />
                 <div className="container"> 
                     <form className="form" onSubmit={this.handleSubmit}>  
                         <Input name="name" type="text" value={name} action={this.handleInput}/>

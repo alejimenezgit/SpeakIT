@@ -1,7 +1,6 @@
 import React from 'react';
 import "./styles.scss";
 
-import Header from '../../components/Header';
 import Input from '../../components/Input';
 import LabelForm from '../../components/LabelForm';
 
@@ -34,7 +33,6 @@ class Login extends React.Component {
         const { email, password } = this.state;
         return (
             <div>
-                <Header />
                 <div className="container" onSubmit={this.handleSubmit}> 
                     <form className="form">
                         <Input name="email" type="Email" value={email} action={this.handleInput}/>
