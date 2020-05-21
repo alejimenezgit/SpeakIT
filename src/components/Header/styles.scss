@@ -10,13 +10,19 @@ body {
 
 
 
-.imgNav{
+.boxImgNav{
   width: 50px;
   height: 50px;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   background: white;
+}
+
+.ImgNav {
+  width: 40px;
+  padding-left: 5px;
+  padding-top: 4px;
 }
 
 .profileDesple ul {

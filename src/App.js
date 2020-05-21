@@ -6,6 +6,7 @@ import Login from './views/Login';
 import Register from './views/Register';
 import MainPage from './views/MainPage';
 import HomePage from './views/HomePage';
+import Profile from './views/Profile';
 
 import Header from './components/Header'
 import AnonRoute from './components/AnonRoute';
@@ -22,6 +23,7 @@ class App extends Component {
             <AnonRoute     exact path={'/login'}    component={Login} />
             <AnonRoute     exact path={'/register'} component={Register} />
             <PrivateRoute  exact path={'/mainpage'} component={MainPage} />
+            <PrivateRoute  exact path={'/profile'} component={Profile} />
             <AnonRoute     exact path={'/'}         component={HomePage} />
         </Switch>
       </AuthProvider>

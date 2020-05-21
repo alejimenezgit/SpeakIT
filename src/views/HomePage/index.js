@@ -5,10 +5,10 @@ export default class HomePage extends React.Component {
 
     renderHomePage  = () => {
         return (
-                <div className="container">
-                    home 
-                </div>
-        );
+                 <div className="container"> 
+                   Home
+                </div>   
+        )
     }
 
     render(){
