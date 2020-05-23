@@ -135,11 +135,11 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 
 # Links 
 
-|   APP         |  LINK    |  
-|---------------|--------------|
-|    TRELLO     |  https://trello.com/b/ClMyEmqs/speak-it           |           
-|    GITHUB     |  https://github.com/alejimenezgit/SpeakIT         |  
-|    GITHUB     |  https://github.com/alejimenezgit/API-SpeakIT     |              
-|    HEROKU     |           |              
-|    SLIDES     |           |              
-|    MOCKUPS    |           |
+|   APP           |  LINK    |  
+|-----------------|--------------|
+|    TRELLO       |  https://trello.com/b/ClMyEmqs/speak-it           |           
+|    GITHUB       |  https://github.com/alejimenezgit/SpeakIT         |  
+|    GITHUB       |  https://github.com/alejimenezgit/API-SpeakIT     |              
+|    HEROKU front |  https://speakitweb.herokuapp.com/                | 
+|    HEROKU back  |  https://apispeakit.herokuapp.com/                |              
+|    SLIDES       |  https://prezi.com/view/30WpoKwQ4Q1gHZ0uvCmI/     |       

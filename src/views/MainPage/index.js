@@ -47,7 +47,9 @@ export default class MainPage extends React.Component {
                     </Slider>
                 </div>
               <div className="box">
+                <div className="">
 
+                </div>
               </div>
             </div>
             

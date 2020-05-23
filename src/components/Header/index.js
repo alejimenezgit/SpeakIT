@@ -3,7 +3,8 @@ import "./styles.scss";
 
 import { Link } from "react-router-dom";
 import { withAuth } from '../../context/authContext';
-
+//import { Logo } from '/Logo';
+ 
 class Header extends React.Component {
 
     renderHeader  = () => {
@@ -11,7 +12,14 @@ class Header extends React.Component {
         return (
             <header className="header">
                 <div className="container">
-                    <Link to={'/'}> <div className="logo">Speak IT</div> </Link>
+                    <Link to={'/'}>
+                        <div>
+                            <img className="imgLogo" src="./images/charla.png" /> 
+                        </div>
+                        <div className="logo">
+                            Speak IT 
+                        </div>  
+                    </Link>
                     {!isLoggedIn 
                         ? 
                         <div>
@@ -47,7 +55,7 @@ class Header extends React.Component {
                                 </ul>
                             </div>
                             <ul className="menu profileDespleMobile">
-                                <li><Link to={'/login'}>Profile</Link></li>
+                                <li><Link to={'/profile'}>Profile</Link></li>
                                 <li><Link onClick={handleLogout}>Log out</Link></li>
                             </ul>
                         </div>

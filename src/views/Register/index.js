@@ -2,6 +2,7 @@ import React from 'react';
 import "./styles.scss";
 import Input from '../../components/Input';
 import { withAuth } from '../../context/authContext';
+import apiClient from "../../services/language";
 
 class Register extends React.Component {
 
@@ -9,7 +10,27 @@ class Register extends React.Component {
         name: '',
         surnames: '',
         email: '',
-        password: ''
+        password: '',
+        nativeLanguages: '',
+        languages: ''
+    }
+
+    componentDidMount() {
+        let {isloading, error} = this.state;
+        isloading = true;
+        apiClient
+            .allLanguages()
+            .then((language) => {
+                console.log(language.data, 'hay languages');
+                this.setState({
+                    languages: language.data,
+                });
+                isloading = false;
+            })
+            .catch(() => {
+                error = true;
+                console.log('no hay languages');
+            });
     }
 
     handleInput = (e) => {
@@ -29,7 +50,7 @@ class Register extends React.Component {
       };
 
     renderLogin  = () => {
-        const { name, surnames, email, password } = this.state;
+        const { name, surnames, email, password, languages, isloading } = this.state;
         return (
             <div>
                 <div className="container"> 
@@ -45,6 +66,18 @@ class Register extends React.Component {
 
                         <Input name="password" type="Password" value={password} action={this.handleInput}/>
                         <label htmlFor="" placeholder="Your Password" alt="password"></label>
+
+                        <Input name="nativeLanguages" type="Password" value={password} action={this.handleInput}/>
+                        <label htmlFor="" placeholder="Your Password" alt="password"></label>
+
+                        {isloading && 
+                            languages.map((language, index) => {
+                                return <div>{languages.language}</div>
+                            })
+                        }
+                               
+                                
+                        
                     
                         <input type="submit" value="submit" />
                     </form>
@@ -59,3 +92,7 @@ class Register extends React.Component {
 }
 
 export default withAuth(Register)
+
+/*
+
+*/
