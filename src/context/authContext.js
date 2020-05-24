@@ -7,7 +7,7 @@ export const withAuth = (Comp) => {
     render() {
       return (
         <AuthContext.Consumer>
-          {({ handleLogin, handleRegister, handleLogout, user, isLoggedIn }) => {
+          {({ handleLogin, handleRegister, handleLogout, user, isLoggedIn, isRegister }) => {
             return (
               <Comp
                 handleLogin={handleLogin}
@@ -15,6 +15,7 @@ export const withAuth = (Comp) => {
                 handleLogout={handleLogout}
                 user={user}
                 isLoggedIn={isLoggedIn}
+                isRegister={isRegister}
                 {...this.props}
               />
             );
@@ -30,6 +31,7 @@ class AuthProvider extends Component {
         isLoggedIn: false,
         user: null,
         isLoading: true,
+        isRegister: false,
     };
 
     componentDidMount() {
@@ -59,7 +61,9 @@ class AuthProvider extends Component {
             .then(({ data: user }) => {
                 this.setState({
                     isLoggedIn: true,
+                    isRegister: false,
                     user,
+                    
                 });
             })
             .catch((error) => {
@@ -70,14 +74,15 @@ class AuthProvider extends Component {
             });
     };
 
-    handleRegister = ({ name, surnames, email, password }) => {
+    handleRegister = ({ name, surnames, email, password, nativeLanguages }) => {
         apiClient
-            .getUserRegister({ name, surnames, email, password })
+            .getUserRegister({ name, surnames, email, password, nativeLanguages })
             .then(({ data: user }) => {
                 console.log({ data: user })
                 this.setState({
                     isLoggedIn: true,
                     user,
+                    isRegister: true
                 });
             })
             .catch((error) => {
@@ -105,12 +110,13 @@ class AuthProvider extends Component {
 
     render() {
         const { children } = this.props;
-        const { isLoggedIn, user } = this.state;
+        const { isLoggedIn, user, isRegister } = this.state;
         return (
         <AuthContext.Provider
             value={{
             isLoggedIn,
             user,
+            isRegister,
             handleLogin: this.handleLogin,
             handleRegister: this.handleRegister,
             handleLogout: this.handleLogout,

@@ -3,6 +3,10 @@ import "./styles.scss";
 import Input from '../../components/Input';
 import { withAuth } from '../../context/authContext';
 import apiClient from "../../services/language";
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 class Register extends React.Component {
 
@@ -11,8 +15,17 @@ class Register extends React.Component {
         surnames: '',
         email: '',
         password: '',
-        nativeLanguages: '',
-        languages: ''
+        nativeLanguages: [],
+        languages: ['']
+    }
+
+    convertObject = (languages) => {
+        let languagesCombo = languages.map((lan,index) => {
+            const { language } = lan;
+            return {value:index, label:language}
+        })
+        console.log(languagesCombo);
+        return languagesCombo;
     }
 
     componentDidMount() {
@@ -21,9 +34,8 @@ class Register extends React.Component {
         apiClient
             .allLanguages()
             .then((language) => {
-                console.log(language.data, 'hay languages');
                 this.setState({
-                    languages: language.data,
+                    languages: this.convertObject(language.data)
                 });
                 isloading = false;
             })
@@ -39,20 +51,28 @@ class Register extends React.Component {
         })
     }
 
+    handleCombo= (e) => {
+        this.setState({
+            nativeLanguages: e.map((languages, index) => languages.label)
+        })
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        const { name, surnames, email, password } = this.state;
-        const { onRegister } = this.props;
-        if (email !== "" && password !== "" &&
-            name !== "" && surnames !== "") {
-                onRegister({ name, surnames, email, password });
-        }
-      };
+        const { name, surnames, email, password, nativeLanguages } = this.state;
+        const { handleRegister } = this.props;
+            if (email !== "" && password !== "" &&
+                name !== "" && surnames !== "" && 
+                nativeLanguages.length > 0) {
+                    handleRegister({ name, surnames, email, password, nativeLanguages });
+            }
+    };
 
     renderLogin  = () => {
-        const { name, surnames, email, password, languages, isloading } = this.state;
+        const { name, surnames, email, password, languages } = this.state;
         return (
             <div>
+                
                 <div className="container"> 
                     <form className="form" onSubmit={this.handleSubmit}>  
                         <Input name="name" type="text" value={name} action={this.handleInput}/>
@@ -66,19 +86,17 @@ class Register extends React.Component {
 
                         <Input name="password" type="Password" value={password} action={this.handleInput}/>
                         <label htmlFor="" placeholder="Your Password" alt="password"></label>
-
-                        <Input name="nativeLanguages" type="Password" value={password} action={this.handleInput}/>
-                        <label htmlFor="" placeholder="Your Password" alt="password"></label>
-
-                        {isloading && 
-                            languages.map((language, index) => {
-                                return <div>{languages.language}</div>
-                            })
-                        }
-                               
-                                
-                        
-                    
+                        <br/>
+                        <Select 
+                            closeMenuOnSelect={false}
+                            components={animatedComponents}
+                            isMulti
+                            name="nativeLanguages"
+                            options={languages}
+                            placeholder="Select your native language"
+                            onChange={this.handleCombo}
+                        />
+                        <br/> <br/>
                         <input type="submit" value="submit" />
                     </form>
                 </div> 
@@ -94,5 +112,17 @@ class Register extends React.Component {
 export default withAuth(Register)
 
 /*
-
+                        <select
+                            native
+                            type="select"
+                            name="nativeLanguages"
+                            multiple={true}
+                            select="multiple"
+                            value={nativeLanguages}
+                            onChange={this.handleCombo}
+                            >
+                                {languages.map((lan,index) => {
+                                    return <option key={index} value={lan.language}> {lan.language} </option>
+                                })}
+                        </select>   
 */
