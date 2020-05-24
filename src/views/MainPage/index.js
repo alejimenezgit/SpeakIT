@@ -4,6 +4,7 @@ import Slider from "react-slick";
 
 import { withAuth } from '../../context/authContext';
 import  Modal  from '../../components/Modal'
+import ItemProfile from '../../components/ItemProfile';
 
 class MainPage extends React.Component {
 
@@ -56,9 +57,12 @@ class MainPage extends React.Component {
                     </Slider>
                 </div>
               <div className="box">
-                <div className="">
-
-                </div>
+                <ItemProfile user={{name: "alejandro"}}>  </ItemProfile> 
+                <ItemProfile user={{name: "alejandro"}}>  </ItemProfile> 
+                <ItemProfile user={{name: "alejandro"}}>  </ItemProfile> 
+                <ItemProfile user={{name: "alejandro"}}>  </ItemProfile> 
+                <ItemProfile user={{name: "alejandro"}}>  </ItemProfile> 
+                
               </div>
             </div>
             

@@ -1,16 +1,9 @@
-.box{
-    border: 1px solid #5f9ea0;
-    background-color: white;
-    border-radius: 1em;
-    height: 600px;
-    margin-top: 50px;
-}
 
 h3 {
     background: #5f9ea0;
     color: #fff;
     font-size: 2vw;
-    line-height: 100px;
+    line-height: 40px;
     margin: 10px;
     padding: 2%;
     position: relative;
@@ -26,6 +19,6 @@ h3:focus {
 
 @media (max-width: 35em) {
     h3 {
-        height: 40px;
+        line-height: 40px;
     }
 }
