@@ -1,12 +1,12 @@
 import React from 'react';
-import "./styles.css";
+import "./styles.scss";
 
 export default class ButtonLiquid extends React.Component {
 
     renderHeader  = () => {
-        const { children, styles } = this.props;
+        const { children, styles, action } = this.props;
         return (
-            <button className={styles}> { children } </button>
+            <button onClick={action} className={styles}> { children } </button>
         );
     }
 

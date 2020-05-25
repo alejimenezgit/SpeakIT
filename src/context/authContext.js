@@ -74,9 +74,9 @@ class AuthProvider extends Component {
             });
     };
 
-    handleRegister = ({ name, surnames, email, password, nativeLanguages }) => {
+    handleRegister = ({ name, surnames, email, password, nativeLanguages, comunications }) => {
         apiClient
-            .getUserRegister({ name, surnames, email, password, nativeLanguages })
+            .getUserRegister({ name, surnames, email, password, nativeLanguages, comunications })
             .then(({ data: user }) => {
                 console.log({ data: user })
                 this.setState({

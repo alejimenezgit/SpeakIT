@@ -21,8 +21,8 @@ class Register extends React.Component {
 
     convertObject = (languages) => {
         let languagesCombo = languages.map((lan,index) => {
-            const { language } = lan;
-            return {value:index, label:language}
+            const { language, _id } = lan;
+            return {value:_id, label:language}
         })
         console.log(languagesCombo);
         return languagesCombo;
@@ -53,7 +53,7 @@ class Register extends React.Component {
 
     handleCombo= (e) => {
         this.setState({
-            nativeLanguages: e.map((languages, index) => languages.label)
+            nativeLanguages: e.map((languages, index) => languages.value)
         })
     }
 
@@ -61,10 +61,10 @@ class Register extends React.Component {
         e.preventDefault();
         const { name, surnames, email, password, nativeLanguages } = this.state;
         const { handleRegister } = this.props;
-            if (email !== "" && password !== "" &&
-                name !== "" && surnames !== "" && 
-                nativeLanguages.length > 0) {
-                    handleRegister({ name, surnames, email, password, nativeLanguages });
+            if (email !== "" && password !== "" && name !== "" && surnames !== "" 
+                && nativeLanguages.length > 0) {
+                    let comunications = [];
+                    handleRegister({ name, surnames, email, password, nativeLanguages, comunications });
             }
     };
 

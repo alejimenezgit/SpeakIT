@@ -11,14 +11,13 @@ export default class ItemProfile extends React.Component {
                 <img className="imgItem" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>
                 <div>
                     <div className="itemName"> {user.name} Jimenez </div>
-                    <div className="itemName"> {user.name} </div>
+                    <div className="itemName"> ------ </div>
                     <div className="itemName"> {user.name} </div>
                 </div>  
-                <div 
-                >
-                    <div className="itemName"> {user.name} Jimenez </div>
-                    <div className="itemName"> {user.name} </div>
-                    <div className="itemName"> {user.name} </div>
+                <div className="pl-10">
+                    <div className="itemName"> </div>
+                    <div className="itemName">  </div>
+                    <div className="itemName"> a </div>
                 </div>  
             </div>
         );

@@ -31,6 +31,11 @@ class ApiClient {
   logout(){
     return this.apiClient.get(`${user}//logout`);
   }
+
+  oneUser(id){
+    return this.apiClient.get(`${user}/${id}`);
+  }
+
 }
 
 const apiClient = new ApiClient();
