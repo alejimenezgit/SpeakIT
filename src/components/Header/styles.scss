@@ -61,7 +61,7 @@ body {
   user-select: none;
 }
 
-.profileDesple a {
+.profileDesple a, .profileDesple label {
   display: block;
   padding: 0 2.5em;
   text-decoration: none;
@@ -102,13 +102,15 @@ a {
   overflow: hidden;
 }
 
-.header li a {
+.header li a,
+.header li label {
   display: block;
   padding: 20px 20px;
   text-decoration: none;
 }
 
 .header li a:hover,
+.header li label:hover,
 .menu-btn:hover {
   background-color: #f4f4f4;
 }

@@ -15,12 +15,10 @@ class ApiClient {
   }
 
   getUserLogin(body) {
-    console.log('body',body)
     return this.apiClient.post(`${user}/`, body);
   }
 
   getUserRegister(body) {
-    console.log('body',body)
     return this.apiClient.post(`${user}/add`, body);
   }
 
@@ -37,7 +35,6 @@ class ApiClient {
   }
 
   updateUser(body, id) {
-    console.log(body, id)
     return this.apiClient.put(`${user}/update/${id}`, body);
   }
 

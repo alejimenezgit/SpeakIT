@@ -28,26 +28,9 @@ class MainPage extends React.Component {
         isRegister: this.props.isRegister,
         addLanguage: false,
         addUser:  false,
-
         listAllLanguages: [],
         modalAddLanguage: '',
-        user: ''
-    }
-
-    componentWillMount(){
-        console.log(this.props);
-        const {_id} = this.props.user;
-        apiClientUser
-            .oneUser(_id)
-            .then((user) => {
-                console.log(user, 'useeeeeeeeeer.');
-                this.setState({
-                    user: user.data
-                })
-            })
-            .catch(() => {
-                console.log('no hay languages');
-            });
+        user: this.props.user.data
     }
 
     handleCombo= (e) => {
@@ -90,11 +73,9 @@ class MainPage extends React.Component {
     addLanguageByUser = () => {
         let user = [];
         let language = this.state.modalAddLanguage;
-        console.log(language)
         apiClientComunication
             .addComunitation({user, language})
             .then((language) => {
-                console.log(language.data._id);
                 apiClientUser
                     .updateUser({comunications: language.data._id}, this.state.user._id)
                     .then((user) => {
@@ -167,12 +148,23 @@ class MainPage extends React.Component {
         let comunIds = this.state.user.comunications;
         console.log(comunIds, 'todas las comunicaciones')
 
+        apiClientComunication
+            .allLanguages()
+            .then((language) => {
+                this.setState({
+                    addLanguage: !this.state.addLanguage ,
+                    listAllLanguages: this.convertObject(language.data)
+                });
+            })
+            .catch(() => {
+                console.log('no hay languages');
+            });
 
-        return 
+        return <div> a </div>;
     }
 
     renderMainPage  = () => {
-        const {isRegister,addLanguage,addUser,listAllLanguages,user} = this.state;
+        const {isRegister,addLanguage,addUser,listAllLanguages} = this.state;
         return (
             <div className="container">
                 <div>
@@ -196,6 +188,7 @@ class MainPage extends React.Component {
                         <div>
                             <h3> Japones </h3>
                         </div>
+                        {this.getAllComunications()}
                     </Slider>
                 </div>
 
@@ -209,7 +202,7 @@ class MainPage extends React.Component {
                     <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
                     <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
                     <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
-                    {this.getAllComunications}
+                    
               </div>
             </div>
             

@@ -11,8 +11,11 @@ class ApiClient {
   }
 
   addComunitation(body) {
-      console.log(body)
     return this.apiClient.post(cm + "/add", body);
+  }
+
+  allComunicationByIds(id){
+    return this.apiClient.post(cm + "/allByIds", id);
   }
 
 }

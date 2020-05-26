@@ -38,7 +38,7 @@ class AuthProvider extends Component {
         apiClient
             .whouseris()
             .then((user) => {
-                console.log(user, 'estas conectado');
+                console.log('user asdasdf',user)
                 this.setState({
                     isLoading: false,
                     isLoggedIn: true,
@@ -46,7 +46,6 @@ class AuthProvider extends Component {
                 });
             })
             .catch((error) => {
-                console.log('no estas conectado');
                 this.setState({
                     isLoading: false,
                     isLoggedIn: false,
@@ -78,7 +77,6 @@ class AuthProvider extends Component {
         apiClient
             .getUserRegister({ name, surnames, email, password, nativeLanguages, comunications })
             .then(({ data: user }) => {
-                console.log({ data: user })
                 this.setState({
                     isLoggedIn: true,
                     user,
@@ -94,7 +92,6 @@ class AuthProvider extends Component {
     };
 
     handleLogout = () => {
-        console.log('entrada en logout')
         apiClient
             .logout()
             .then(() => {
@@ -104,7 +101,7 @@ class AuthProvider extends Component {
             });
             })
             .catch((error) => {
-            console.log(error);
+                console.log(error);
             });
         };
 

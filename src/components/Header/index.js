@@ -8,13 +8,13 @@ import { withAuth } from '../../context/authContext';
 class Header extends React.Component {
 
     renderHeader  = () => {
-        const { handleLogout, isLoggedIn, user } = this.props;
+        const { handleLogout, isLoggedIn } = this.props;
         return (
             <header className="header">
                 <div className="container">
                     <Link to={'/'}>
                         <div>
-                            <img className="imgLogo" src="./images/charla.png" /> 
+                            <img alt="img" className="imgLogo" src="./images/charla.png" /> 
                         </div>
                         <div className="logo">
                             Speak IT 
@@ -48,7 +48,7 @@ class Header extends React.Component {
                                                 <Link to={'/profile'}>Profile</Link>
                                             </li>
                                             <li className="itemDesple">
-                                                <Link onClick={handleLogout} className="bttnlogout">  Log out </Link>
+                                                <label onClick={handleLogout} className="bttnlogout">  Log out </label>
                                             </li>
                                         </ul>
                                     </li>
@@ -56,7 +56,7 @@ class Header extends React.Component {
                             </div>
                             <ul className="menu profileDespleMobile">
                                 <li><Link to={'/profile'}>Profile</Link></li>
-                                <li><Link onClick={handleLogout}>Log out</Link></li>
+                                <li><label onClick={handleLogout}>Log out</label></li>
                             </ul>
                         </div>
                     }

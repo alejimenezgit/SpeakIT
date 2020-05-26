@@ -24,23 +24,18 @@ class Register extends React.Component {
             const { language, _id } = lan;
             return {value:_id, label:language}
         })
-        console.log(languagesCombo);
         return languagesCombo;
     }
 
     componentDidMount() {
-        let {isloading, error} = this.state;
-        isloading = true;
         apiClient
             .allLanguages()
             .then((language) => {
                 this.setState({
                     languages: this.convertObject(language.data)
                 });
-                isloading = false;
             })
             .catch(() => {
-                error = true;
                 console.log('no hay languages');
             });
     }

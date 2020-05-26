@@ -5,7 +5,6 @@ class Modal extends React.Component {
 
     renderModal  = () => {
         const {action} = this.props;
-        console.log({action})
         return (
             <div className="modal" >
                 <button onClick={action} className="modalButton"> x </button>
