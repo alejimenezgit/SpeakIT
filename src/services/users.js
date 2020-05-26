@@ -36,6 +36,11 @@ class ApiClient {
     return this.apiClient.get(`${user}/${id}`);
   }
 
+  updateUser(body, id) {
+    console.log(body, id)
+    return this.apiClient.put(`${user}/update/${id}`, body);
+  }
+
 }
 
 const apiClient = new ApiClient();

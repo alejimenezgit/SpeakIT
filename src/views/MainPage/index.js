@@ -1,8 +1,11 @@
 import React from 'react';
 import "./styles.scss";
+
 import Slider from "react-slick";
 import Select from 'react-select';
+
 import { withAuth } from '../../context/authContext';
+
 import  Modal  from '../../components/Modal'
 import ItemProfile from '../../components/ItemProfile';
 import Button from '../../components/Button';
@@ -11,9 +14,13 @@ import apiClientUser from "../../services/users";
 import apiClientLanguage from "../../services/language";
 import apiClientComunication from "../../services/comunication";
 
-import makeAnimated from 'react-select/animated';
-
-const animatedComponents = makeAnimated();
+const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3
+  };
 
 class MainPage extends React.Component {
 
@@ -21,17 +28,19 @@ class MainPage extends React.Component {
         isRegister: this.props.isRegister,
         addLanguage: false,
         addUser:  false,
+
         listAllLanguages: [],
         modalAddLanguage: '',
         user: ''
     }
 
-    componentDidMount(){
-        const {data} = this.props.user;
-        
+    componentWillMount(){
+        console.log(this.props);
+        const {_id} = this.props.user;
         apiClientUser
-            .oneUser(data._id)
+            .oneUser(_id)
             .then((user) => {
+                console.log(user, 'useeeeeeeeeer.');
                 this.setState({
                     user: user.data
                 })
@@ -41,19 +50,28 @@ class MainPage extends React.Component {
             });
     }
 
+    handleCombo= (e) => {
+        this.setState({
+            modalAddLanguage: e.value
+        })
+    }
+
+
     convertObject = (languages) => {
         let languagesCombo = languages.map((lan,index) => {
-            console.log(lan)
             const { language, _id } = lan;
             return {value:_id, label:language}
         })
-        console.log(languagesCombo);
         return languagesCombo;
     }
     
     closeModalRegister = () => { this.setState({ isRegister: false }) }
     closeModalAddLan = () => { this.setState({ addLanguage: false }) }
     closeModalAddUser = () => { this.setState({ addUser: false }) }
+
+    addUser= () => { 
+        this.setState({ addUser: !this.state.addUser }) 
+    }
 
     addLanguage = () => {
         apiClientLanguage
@@ -76,19 +94,26 @@ class MainPage extends React.Component {
         apiClientComunication
             .addComunitation({user, language})
             .then((language) => {
+                console.log(language.data._id);
+                apiClientUser
+                    .updateUser({comunications: language.data._id}, this.state.user._id)
+                    .then((user) => {
+                        this.setState({
+                            user: user.data
+                        })
+                    })
+                    .catch(() => {
+                        console.log('no hay languages');
+                    });
                 this.setState({
-                    addLanguage: !this.state.addLanguage ,
-                    listAllLanguages: this.convertObject(language.data)
+                    addLanguage: !this.state.addLanguage 
                 });
             })
             .catch(() => {
                 console.log('no hay languages');
             });
-
-            this.setState({ addLanguage: false })
     }
 
-    addUser= () => { this.setState({ addUser: !this.state.addUser }) }
 
     renderModalisRegister = () => {
         return (
@@ -103,12 +128,7 @@ class MainPage extends React.Component {
         )
     }
 
-    handleCombo= (e) => {
-        this.setState({
-            modalAddLanguage: e.value
-        })
-    }
-
+   
     renderModalAddLanguage = (listAllLanguages) => {
         return (
             <div>
@@ -142,17 +162,17 @@ class MainPage extends React.Component {
         )
     }
 
+    getAllComunications = () => {
+
+        let comunIds = this.state.user.comunications;
+        console.log(comunIds, 'todas las comunicaciones')
+
+
+        return 
+    }
+
     renderMainPage  = () => {
-
-        const settings = {
-            dots: true,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 3,
-            slidesToScroll: 3
-          };
-        const {isRegister,addLanguage,addUser,listAllLanguages} = this.state;
-
+        const {isRegister,addLanguage,addUser,listAllLanguages,user} = this.state;
         return (
             <div className="container">
                 <div>
@@ -167,27 +187,29 @@ class MainPage extends React.Component {
 
 
                     <Slider {...settings}>
-                    <div>
-                        <h3> Ingles </h3>
-                    </div>
-                    <div>
-                        <h3> Español </h3>
-                    </div>
-                    <div>
-                        <h3> Japones </h3>
-                    </div>
+                        <div>
+                            <h3> Ingles </h3>
+                        </div>
+                        <div>
+                            <h3> Español </h3>
+                        </div>
+                        <div>
+                            <h3> Japones </h3>
+                        </div>
                     </Slider>
                 </div>
-              <div className="box">
-                <div className="selectBox pdl-25">
-                    <h2> Users  by Language </h2>
-                    <Button action={this.addUser} styles="btnAddLanguage"> + </Button>
-                </div>
-                <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
-                <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
-                <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
-                <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
-                <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
+
+                <div className="box">
+                    <div className="selectBox pdl-25">
+                        <h2> Users  by Language </h2>
+                        <Button action={this.addUser} styles="btnAddLanguage"> + </Button>
+                    </div>
+                    <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
+                    <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
+                    <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
+                    <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
+                    <ItemProfile user={{name: "Alejandro"}}>  </ItemProfile> 
+                    {this.getAllComunications}
               </div>
             </div>
             
