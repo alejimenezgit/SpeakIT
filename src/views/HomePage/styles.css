@@ -10,11 +10,7 @@ h3 {
     text-align: center;
     height: 20%;
     border-radius: 1em;
-}
-
-
-h3:focus {
-    outline: none;
+    outline:none;
 }
 
 @media (max-width: 35em) {

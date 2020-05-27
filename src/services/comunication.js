@@ -15,7 +15,8 @@ class ApiClient {
   }
 
   allComunicationByIds(id){
-    return this.apiClient.post(cm + "/allByIds", id);
+    console.log(id)
+    return this.apiClient.get(cm + `/allByIds/${id}`);
   }
 
 }

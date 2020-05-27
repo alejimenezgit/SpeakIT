@@ -10,6 +10,10 @@ class ApiClient {
     });
   }
 
+  allbyUser(body) {
+    return this.apiClient.get(user + "/allbyLanguage", body);
+  }
+
   whouseris() {
     return this.apiClient.get(user + "/whouseris");
   }
@@ -37,6 +41,7 @@ class ApiClient {
   updateUser(body, id) {
     return this.apiClient.put(`${user}/update/${id}`, body);
   }
+
 
 }
 
