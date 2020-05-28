@@ -16,6 +16,7 @@ class MainPage extends React.Component {
         isSearch: false,
         isChat: false,
         isMatch: false,
+        user: this.props.user,
     }
 
     closeModalRegister = () => { this.setState({ isRegister: false }) }
@@ -58,7 +59,7 @@ class MainPage extends React.Component {
     }
 
     renderMainPage  = () => {
-        const {isRegister, isSearch, isChat, isMatch} = this.state;
+        const {isRegister, isSearch, isChat, isMatch, user} = this.state;
         return (
             <div className="container">
 
@@ -77,9 +78,9 @@ class MainPage extends React.Component {
                 <div className="line"></div>
 
                 { isRegister && this.renderModalisRegister() }
-                { isSearch && <Search />}
+                { isSearch && <Search user={user}/>}
                 { isChat &&  <Chat />}
-                { isMatch && <Match />}
+                { isMatch && <Match user={user}/>}
 
             </div>
         );

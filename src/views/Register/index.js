@@ -15,6 +15,7 @@ class Register extends React.Component {
         surnames: '',
         email: '',
         password: '',
+        match: [],
         nativeLanguages: [],
         languages: ['']
     }
@@ -54,12 +55,12 @@ class Register extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { name, surnames, email, password, nativeLanguages } = this.state;
+        const { name, surnames, email, password, nativeLanguages, match } = this.state;
         const { handleRegister } = this.props;
             if (email !== "" && password !== "" && name !== "" && surnames !== "" 
                 && nativeLanguages.length > 0) {
                     let comunications = [];
-                    handleRegister({ name, surnames, email, password, nativeLanguages, comunications });
+                    handleRegister({ name, surnames, email, password, nativeLanguages, comunications, match });
             }
     };
 
@@ -104,20 +105,4 @@ class Register extends React.Component {
     }
 }
 
-export default withAuth(Register)
-
-/*
-                        <select
-                            native
-                            type="select"
-                            name="nativeLanguages"
-                            multiple={true}
-                            select="multiple"
-                            value={nativeLanguages}
-                            onChange={this.handleCombo}
-                            >
-                                {languages.map((lan,index) => {
-                                    return <option key={index} value={lan.language}> {lan.language} </option>
-                                })}
-                        </select>   
-*/
+export default withAuth(Register);

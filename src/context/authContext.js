@@ -73,9 +73,9 @@ class AuthProvider extends Component {
             });
     };
 
-    handleRegister = ({ name, surnames, email, password, nativeLanguages, comunications }) => {
+    handleRegister = ({ name, surnames, email, password, nativeLanguages, comunications, match }) => {
         apiClient
-            .getUserRegister({ name, surnames, email, password, nativeLanguages, comunications })
+            .getUserRegister({ name, surnames, email, password, nativeLanguages, comunications, match })
             .then(({ data: user }) => {
                 this.setState({
                     isLoggedIn: true,

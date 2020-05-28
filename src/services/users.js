@@ -11,7 +11,8 @@ class ApiClient {
   }
 
   allbyUser(body) {
-    return this.apiClient.get(user + "/allbyLanguage", body);
+    console.log(body)
+    return this.apiClient.post(user + "/allbyLanguage", body);
   }
 
   whouseris() {
