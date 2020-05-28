@@ -37,7 +37,7 @@ class AuthProvider extends Component {
     componentDidMount() {
         apiClient
             .whouseris()
-            .then((user) => {
+            .then(({ data: user }) => {
                 console.log('user asdasdf',user)
                 this.setState({
                     isLoading: false,

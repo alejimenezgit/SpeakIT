@@ -6,7 +6,7 @@ import { withAuth } from '../../context/authContext';
 class Profile extends React.Component {
 
     state = {
-        user: this.props.user.data
+        user: this.props.user
     }
 
     renderProfile = () => {

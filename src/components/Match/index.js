@@ -1,44 +1,62 @@
 import React from 'react';
 import "./styles.scss";
 
-class Match extends React.Component {
+import apiClientUser from "../../services/users";
+
+export default class Match extends React.Component {
 
     state = {
-        allUsers: this.props.user.data.match
+        allMatches: [],
+        isloading: '',
+        error: ''
     }
 
-    addUser = () => {
-        console.log('add')
+    componentDidMount() {
+        this.setState({ isloading: true });
+        apiClientUser
+            .oneUserMatches(this.props.user._id)
+            .then((matches) => this.setState({
+                allMatches: matches.data.match,
+                isloading: false
+            }))
+            .catch(()=> this.setState({ error: true }))
+    }
+
+    addUser = (user) => {
+        console.log(user)
     }
 
     refuseUser = () => {
         console.log('refuse')
     }
-
+    
     allMatches() {
-       return this.state.allUsers.map((user,index) =>{
-            return <div className="boxUser">  
-                        {user.id} 
-                        {user.status === 'Enviado' ?
-                         <div> Enviado </div>  : 
-                         <div> <button onClick={this.addUser()}> add </button> <button onClick={this.refuseUser}> refuse </button> </div>}
+       return this.state.allMatches.map((user,index) =>{
+            return <div key={index} className="boxUser">  
+                        {user._id} 
+                        {user.status === 'Enviado' && <div> Enviado </div> }
+                        {user.status === 'pendiente' && 
+                            <div> 
+                                <button onClick={() => this.addUser(user)}> add </button> 
+                                <button onClick={this.refuseUser}> refuse </button> 
+                            </div> 
+                        }
                    </div>
-       })
+       });
     }
 
     renderMatch = () => {
-        return (
+        const {isloading, error} = this.state;
+        return  (
             <div>
-                <h1> All the matches </h1>
-                {this.allMatches()}
+                <h1> Todos tus matches </h1>
+                {isloading && !error ? <div> espera </div> : this.allMatches()}
+                {error && <div> error </div>}
             </div>
-        );
+        )
     }
 
     render(){
         return this.renderMatch();
     }
 }
-
-
-export default Match; 

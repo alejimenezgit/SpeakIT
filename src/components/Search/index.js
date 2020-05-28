@@ -21,7 +21,8 @@ class Search extends React.Component {
         isloading: false,
         error: false,
         showLanguage: true,
-        languagesByUser: []
+        languagesByUser: [],
+        user: this.props.user
     }
 
     convertObject = (languages) => {
@@ -61,19 +62,17 @@ class Search extends React.Component {
             })
     }
 
-    match = ({userToMatch},{user}) => {
-        
-        const data = {user};
-        console.log('los dos users',userToMatch,data.user);
+    match = ({userToMatch}) => {
+        const {user} = this.state;
 
         let objuserToMatch = {
-            id: data.user.data._id,
+            id: user._id,
             status: "pendiente"
         }
         console.log('obj user To Match', objuserToMatch);
 
         apiClientUser
-            .updateUser({match: objuserToMatch}, userToMatch._id)
+            .pushMatch(objuserToMatch, userToMatch._id)
             .then((result) => console.log(result))
             .catch(()=> console.log('error'))
 
@@ -84,7 +83,7 @@ class Search extends React.Component {
         console.log('obj user', objuser) 
 
         apiClientUser
-            .updateUser({match: objuser}, data.user.data._id)
+            .pushMatch(objuser, user._id)
             .then((result) => console.log(result))
             .catch(()=> console.log('error'))
         
@@ -93,12 +92,13 @@ class Search extends React.Component {
     showUserByLanguage = () => {
         console.log(this.state.languagesByUser)
         const { user } = this.props;
+        console.log({user},'--------------------------------')
         return (
             <div className="boxAllUsers"> 
                 {this.state.languagesByUser.map((userToMatch,index)=>{
                     return <div className="boxUser" key={index}> 
                                 {userToMatch.name} <br></br>
-                                <button onClick={() => this.match({userToMatch},{user})}> Match </button> 
+                                <button onClick={() => this.match({userToMatch})}> Match </button> 
                            </div>
                 })}
             </div>
@@ -116,17 +116,15 @@ class Search extends React.Component {
     renderSearch = () => {
         return (
             <div>
-                <div>
-                    <h1> Choose a Language </h1>
-                    <Slider {...settings}>
-                        {this.renderAllLanguages()}
-                    </Slider>
-                    <div className="box">
-                        <div className="selectBox pdl-25">
-                            <h2> Users  by Language </h2>
-                        </div>
-                        {this.showUserByLanguage()}
+                <h1> Choose a Language </h1>
+                <Slider {...settings}>
+                    {this.renderAllLanguages()}
+                </Slider>
+                <div className="box">
+                    <div className="selectBox pdl-25">
+                        <h2> Users  by Language </h2>
                     </div>
+                    {this.showUserByLanguage()}
                 </div>
             </div>
         );

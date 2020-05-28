@@ -35,6 +35,10 @@ class ApiClient {
     return this.apiClient.get(`${user}//logout`);
   }
 
+  oneUserMatches(id){
+    return this.apiClient.get(`${user}/oneUserMatches/${id}`);
+  }
+
   oneUser(id){
     return this.apiClient.get(`${user}/${id}`);
   }
@@ -42,7 +46,10 @@ class ApiClient {
   updateUser(body, id) {
     return this.apiClient.put(`${user}/update/${id}`, body);
   }
-
+  
+  pushMatch(body, id) {
+    return this.apiClient.put(`${user}/pushMatch/${id}`, body);
+  }
 
 }
 
