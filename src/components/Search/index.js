@@ -1,6 +1,7 @@
 import React from 'react';
 import "./styles.scss";
 
+import apiClientComunication from "../../services/comunication";
 import apiClientLanguage from "../../services/language";
 import apiClientUser from "../../services/users";
 
@@ -64,29 +65,16 @@ class Search extends React.Component {
 
     match = ({userToMatch}) => {
         const {user} = this.state;
-
-        let objuserToMatch = {
-            id: user._id,
-            status: "pendiente"
-        }
-        console.log('obj user To Match', objuserToMatch);
-
-        apiClientUser
-            .pushMatch(objuserToMatch, userToMatch._id)
-            .then((result) => console.log(result))
-            .catch(()=> console.log('error'))
-
-        let objuser = {
-            id: userToMatch._id,
-            status: "Enviado"
-        }
-        console.log('obj user', objuser) 
+        const body = {
+                        sender: user._id, 
+                        receiver: userToMatch._id, 
+                        status: "pendiente"
+                     }
 
         apiClientUser
-            .pushMatch(objuser, user._id)
-            .then((result) => console.log(result))
-            .catch(()=> console.log('error'))
-        
+            .createMatch(body)
+            .then((resultado) => console.log(resultado))
+            .catch(() => console.log('error'))
     }
 
     showUserByLanguage = () => {

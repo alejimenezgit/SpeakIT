@@ -7,18 +7,20 @@ export default class Match extends React.Component {
 
     state = {
         allMatches: [],
-        isloading: '',
-        error: ''
+        isloading: false,
+        error: false
     }
 
     componentDidMount() {
         this.setState({ isloading: true });
         apiClientUser
             .oneUserMatches(this.props.user._id)
-            .then((matches) => this.setState({
-                allMatches: matches.data.match,
-                isloading: false
-            }))
+            .then((users) => {
+                this.setState({
+                    allMatches: users.data,
+                    isloading: false
+                })
+            })
             .catch(()=> this.setState({ error: true }))
     }
 
@@ -31,20 +33,16 @@ export default class Match extends React.Component {
     }
     
     allMatches() {
-       return this.state.allMatches.map((user,index) =>{
-            return <div key={index} className="boxUser">  
-                        {user._id} 
-                        {user.status === 'Enviado' && <div> Enviado </div> }
-                        {user.status === 'pendiente' && 
-                            <div> 
-                                <button onClick={() => this.addUser(user)}> add </button> 
-                                <button onClick={this.refuseUser}> refuse </button> 
-                            </div> 
-                        }
-                   </div>
-       });
+       console.log('state', this.state.allMatches, this.state.statusMatches);
+       
+       return this.state.allMatches.map((user, index) => {
+            return <div key={index}> 
+                        <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>
+                        {user.name}
+                        {user.state}
+                    </div>
+       })
     }
-
     renderMatch = () => {
         const {isloading, error} = this.state;
         return  (

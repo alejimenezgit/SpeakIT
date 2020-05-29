@@ -5,7 +5,7 @@ const user = '/user';
 class ApiClient {
   constructor() {
     this.apiClient = axios.create({
-      baseURL: process.env.REACT_APP_BACKEND_URI,
+      baseURL: process.env.REACT_APP_BACKEND_URI_LOCAL,
       withCredentials: true,
     });
   }
@@ -13,6 +13,10 @@ class ApiClient {
   allbyUser(body) {
     console.log(body)
     return this.apiClient.post(user + "/allbyLanguage", body);
+  }
+
+  createMatch(body) {
+    return this.apiClient.post(`${user}/createMatch`, body);
   }
 
   whouseris() {
