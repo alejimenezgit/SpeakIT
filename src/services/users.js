@@ -15,6 +15,10 @@ class ApiClient {
     return this.apiClient.post(user + "/allbyLanguage", body);
   }
 
+  createMatch(body) {
+    return this.apiClient.post(`${user}/createMatch`, body);
+  }
+
   whouseris() {
     return this.apiClient.get(user + "/whouseris");
   }
