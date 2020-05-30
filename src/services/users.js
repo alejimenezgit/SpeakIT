@@ -39,8 +39,9 @@ class ApiClient {
     return this.apiClient.get(`${user}//logout`);
   }
 
-  oneUserMatches(id){
-    return this.apiClient.get(`${user}/oneUserMatches/${id}`);
+  oneUserMatches(id,body){
+    console.log(body)
+    return this.apiClient.post(`${user}/oneUserMatches/${id}`, body);
   }
 
   oneUser(id){
