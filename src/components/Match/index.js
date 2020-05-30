@@ -26,6 +26,7 @@ export default class Match extends React.Component {
                     allMatches: users.data,
                     isloading: false
                 })
+                console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuusers', users.data)
             })
             .catch(()=> this.setState({ error: true }))
     }
@@ -47,8 +48,8 @@ export default class Match extends React.Component {
        
        return this.state.allMatches.map((user, index) => {
             return <div key={index}> 
-                        <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>
-                        {user.name}
+                        {user.state !== 'match' && <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>}
+                        {user.state !== 'match' && user.name}
                         {user.state === 'pendiente' && <div> pendiente </div>}
                         {user.state === 'addOrNot' && 
                             <div> 
