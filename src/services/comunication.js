@@ -15,8 +15,11 @@ class ApiClient {
   }
 
   allComunicationByIds(id){
-    console.log(id)
     return this.apiClient.get(cm + `/allByIds/${id}`);
+  }
+
+  update(id, body){
+    return this.apiClient.put(`${cm}/update/${id}`, body);
   }
 
 }
