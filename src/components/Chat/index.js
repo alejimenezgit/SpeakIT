@@ -1,58 +1,67 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./styles.scss";
 
 import ItemChat from '../../components/ItemChat'
 
 import apiClientUser from "../../services/users";
 
-class Chat extends React.Component {
 
-    state = {
-        allMatches: [],
-        isloading: false,
-        error: false
-    }
 
-    componentDidMount() {
-        this.setState({ isloading: true });
-        this.updateAllMatches();
-    }
+function useUsersChat(id){
+    const [allUsers, setallUsers] = React.useState([]);
 
-    updateAllMatches = () => {
-        console.log('aasdasdfasd')
+    useEffect(() => {
         apiClientUser
-            .oneUserMatches(this.props.user._id,{status: 'done'})
-            .then((users) => {
-                this.setState({
-                    allMatches: users.data,
-                    isloading: false
-                })
-                console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuusers', users.data)
+        .oneUserMatches(id,{status: 'done'})
+        .then((users) => {
+            setallUsers({
+                allUsers: users.data
             })
-            .catch(()=> this.setState({ error: true }))
-    }
-
-    allMatches() {
-        return this.state.allMatches.map((user, index) => {
-             return <ItemChat index={index} user={user} />
         })
-     }
+        .catch(()=> console.log('error'));
+    }, []);
 
-    renderChat = () => {
-        const {isloading, error} = this.state;
-        return  (
-            <div>
-                <h1> Todos tus matches </h1>
-                {isloading && !error ? <div> espera </div> : this.allMatches()}
-                {error && <div> error </div>}
-            </div>
-        )
-    }
-
-    render(){
-        return this.renderChat();
-    }
+    return allUsers;
 }
 
+export default function Chat(props) {
+    const [textValue, changeTextValue] = React.useState('');
+    let allUsers = useUsersChat(props.user._id);
+    return (
+        allUsers.length !== 0 ?
+        (
+            <div className="contain"> 
+            <div className="inFlex">
+                <div className="allChats">
+                    {allUsers.allUsers.map((user, index) => {
+                        return <ItemChat index={index} user={user} />
+                    })}
+                </div>
+                <div className="contextChat">
+                    <div className="nameChat"> Name</div>
+                    <div className="chat"> Chat 
+                        { [{from:'Alejandro', msg: 'Eres el puto amo'}].map((user, index) => {
+                            return (
+                                <div key={index} className="inFlex"> 
+                                    <div> {user.from} </div>
+                                    <div> {user.msg} </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <div className="text"> 
+                        <input 
+                            value={textValue}
+                            onChange={(e)=> changeTextValue(e.target.value)}
+                        />
+                        <button> send </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        )
+        :
+        <div> espera </div>
+    );
 
-export default Chat; 
+}

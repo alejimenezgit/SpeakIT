@@ -1,6 +1,8 @@
 import React from 'react';
 import "./styles.scss";
 
+import { Link } from "react-router-dom";
+
 export default class ItemChat extends React.Component {
 
     render(){
@@ -10,7 +12,9 @@ export default class ItemChat extends React.Component {
                         <div>
                             <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>
                             {user.name}
-                            <button> CHAT </button>
+                            <Link to={{pathname: '/chat', state:{user: user.id}}}>  
+                                <button> CHAT </button> 
+                            </Link>
                         </div>
                     }
                 </div>

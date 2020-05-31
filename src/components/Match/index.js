@@ -22,7 +22,7 @@ export default class Match extends React.Component {
         console.log(id);
         apiClientComunications
             .update(id, {status: 'match'})
-            .then((result) => {this.updateAllMatches()})
+            .then((result) => {this.usersMatches()})
             .catch(() => {})
     }
 
@@ -52,7 +52,7 @@ export default class Match extends React.Component {
        console.log('state', this.state.allMatches);
        
        return this.state.allMatches.map((user, index) => {
-            return  <ItemMatch index={index} user={user} addUser={this.addUser()} refuseUser={this.refuseUser()}/> 
+            return  <ItemMatch index={index} user={user} addUser={this.addUser} refuseUser={this.refuseUser}/> 
        })
     }
     renderMatch = () => {

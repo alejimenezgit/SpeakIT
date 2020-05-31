@@ -12,10 +12,10 @@ export default  class ItemMatch extends React.Component {
                     {user.state === 'addOrNot' && 
                         <div> 
                             <div> 
-                                <button onClick={addUser(user.idCom)}> ADD </button> 
+                                <button onClick={()=>addUser(user.idCom)}> ADD </button> 
                             </div>
                             <div> 
-                                <button onClick={refuseUser(user.idCom)}> REFUSE </button> 
+                                <button onClick={()=>refuseUser(user.idCom)}> REFUSE </button> 
                             </div>
                         </div>
                     }
