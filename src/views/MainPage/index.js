@@ -81,7 +81,7 @@ class MainPage extends React.Component {
 
                 { isRegister && this.renderModalisRegister() }
                 { isSearch && <Search user={user}/>}
-                { isChat &&  <ContextChat>
+                { isChat &&  <ContextChat user={user}>
                                 <Chat user={user}/>
                              </ContextChat> 
                 }

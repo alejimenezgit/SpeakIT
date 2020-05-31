@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import io from 'socket.io-client';
-
+import apiClientUser from "../services/users";
 export const CTX = React.createContext();
-
 
 // retener mi estado mientras mapeamos en un chat que 
 // recibimos y renderizar la pagina para que el aparezca
@@ -33,7 +32,9 @@ export const CTX = React.createContext();
     }
 */
 
-const iniState = {
+
+
+/* const iniState = {
     general: [
         {from: '( Me )   =', msg: ' hello'},
         {from: '( Aron ) =', msg: ' hello Alejandro'},
@@ -46,9 +47,28 @@ const iniState = {
         {from: '( Aron ) =', msg: ' by'}
     ]
 }
+*/
+function useUsersChat(id){
+    const [allUsers, setallUsers] = React.useState([]);
+
+    useEffect(() => {
+        apiClientUser
+        .oneUserMatches(id,{status: 'done'})
+        .then((users) => {
+            setallUsers({
+                allUsers: users.data
+            })
+        })
+        .catch(()=> console.log('error'));
+    }, []);
+
+    return allUsers;
+}
 
 function reducer(state, action){
     const {from,msg,topic} = action.payload;
+    console.log(state,'state')
+    console.log(action, 'action')
     switch(action.type){
         case 'RECEIVE_MESSAGE':
             return {
@@ -66,17 +86,46 @@ function reducer(state, action){
     }
 }
 
-
 let socket;
 
 function sendChatAction (value) {
     socket.emit('chat message', value)
 }
 
+ const iniState2 = {
+    general: [
+        {from: '( Me )   =', msg: ' hello'},
+        {from: '( Aron ) =', msg: ' hello Alejandro'},
+        {from: '( Me )   =', msg: ' How are you?'},
+        {from: '( Me )   =', msg: ' hello sony'}
+    ],
+    topic2: [
+        {from: '( Aron ) =', msg: ' hello'},
+        {from: '( Me )   =', msg: ' hello Alejandro'},
+        {from: '( Aron ) =', msg: ' by'}
+    ]
+}
+
+
 export default function Store(props){
 
-    const [allChats, dispatch] = React.useReducer(reducer, iniState);
+    let allUsers = useUsersChat(props.user._id);
 
+    console.log(allUsers);
+
+    let iniState = {}
+
+    if(allUsers.length !== 0){
+        allUsers.allUsers.forEach((user,index) => {
+            iniState[user.name] = [{from: '( Aron ) =', msg: ' hello'},
+                                   {from: '( Aron ) =', msg: ' hello'}]
+        });
+        console.log('iniState', iniState);
+        console.log('iniState2', iniState2);
+    }
+
+    const [allChats, dispatch] = React.useReducer(reducer, iniState2);
+    console.log('allChats -----------', allChats )
     if(!socket){
         socket = io(':3002');
         socket.on('chat message', function(msg){

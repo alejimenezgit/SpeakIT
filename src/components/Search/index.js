@@ -1,7 +1,6 @@
 import React from 'react';
 import "./styles.scss";
 
-import apiClientComunication from "../../services/comunication";
 import apiClientLanguage from "../../services/language";
 import apiClientUser from "../../services/users";
 

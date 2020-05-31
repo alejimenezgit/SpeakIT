@@ -38,7 +38,6 @@ class AuthProvider extends Component {
         apiClient
             .whouseris()
             .then(({ data: user }) => {
-                console.log('user asdasdf',user)
                 this.setState({
                     isLoading: false,
                     isLoggedIn: true,
