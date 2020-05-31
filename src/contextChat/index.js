@@ -67,8 +67,6 @@ function useUsersChat(id){
 
 function reducer(state, action){
     const {from,msg,topic} = action.payload;
-    console.log(state,'state')
-    console.log(action, 'action')
     switch(action.type){
         case 'RECEIVE_MESSAGE':
             return {
@@ -106,26 +104,23 @@ function sendChatAction (value) {
     ]
 }
 
+let iniState = []
 
 export default function Store(props){
 
     let allUsers = useUsersChat(props.user._id);
 
-    console.log(allUsers);
-
-    let iniState = {}
-
     if(allUsers.length !== 0){
         allUsers.allUsers.forEach((user,index) => {
-            iniState[user.name] = [{from: '( Aron ) =', msg: ' hello'},
-                                   {from: '( Aron ) =', msg: ' hello'}]
+            iniState[user.name] =  [    {from: '( Me )   =', msg: ' hello'},
+                                        {from: '( Aron ) =', msg: ' hello Alejandro'},
+                                        {from: '( Me )   =', msg: ' How are you?'},
+                                        {from: '( Me )   =', msg: ' hello sony'}]
         });
-        console.log('iniState', iniState);
-        console.log('iniState2', iniState2);
-    }
+    } 
 
-    const [allChats, dispatch] = React.useReducer(reducer, iniState2);
-    console.log('allChats -----------', allChats )
+    const [allChats, dispatch] = React.useReducer(reducer, iniState);
+
     if(!socket){
         socket = io(':3002');
         socket.on('chat message', function(msg){
@@ -137,8 +132,23 @@ export default function Store(props){
     const user = "ale";
 
     return (
-        <CTX.Provider value={{allChats, sendChatAction, user }}>
+        <CTX.Provider value={{allChats, sendChatAction, user,  }}>
             {props.children}
         </CTX.Provider>
     )
 }
+/*
+             let iniState = {}
+            if(users.data.allUsers.length !== 0) {
+                users.data.allUsers.forEach((user,index) => {
+                    iniState[user.name] =  [{from: '( Aron ) =', msg: ' hello'},
+                                           {from: '( Aron ) =', msg: ' hello'}]
+                });
+                setallUsers({
+                    allUsers: iniState
+                })
+            } else {
+                iniState = []
+            }
+            
+*/

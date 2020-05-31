@@ -5,25 +5,23 @@ import "./styles.scss";
 
 import {CTX} from '../../contextChat/index'
 
+
 export default function Chat(props) {
 
     // CTX 
     const {allChats, sendChatAction, user} = React.useContext(CTX);
-    const topics = Object.keys(allChats);
-    
-    console.log('allChats',allChats)/*
-    console.log('sendChatAction',sendChatAction)
-    console.log('user',user);
-    console.log('topics',topics)*/
+    const topics = Object.keys({...allChats});
 
     // Local State
     const [textValue, changeTextValue] = React.useState('');
-    const [activeTopic, changeActivetopic] = React.useState(topics[0])
 
+    //topics.length > 0 ? textValue = true  : textValue = false;
+    const [activeTopic, changeActivetopic] = new React.useState('paco')
+
+    
     return (
-        allChats.length !== 0 ?
-        (
-            <div className="contain"> 
+        JSON.stringify({...allChats}) !== JSON.stringify({}) 
+        ?  (<div className="contain"> 
                 <div className="inFlex">
                     <div className="allChats">
                         {topics.map((user, index) => {
@@ -36,7 +34,7 @@ export default function Chat(props) {
                             {activeTopic}
                         </div>
                         <div className="chat"> Chat 
-                            { allChats[activeTopic].map((user, index) => {
+                            { {...allChats}[activeTopic].map((user, index) => {
                                 return (
                                     <div key={index} className="inFlex"> 
                                         <div> {user.from} </div>
