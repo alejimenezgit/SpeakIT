@@ -71,7 +71,7 @@ let socket;
 export default function Store(props){
 
     if(!socket){
-        socket = io(':3001')
+        socket = io(':3002')
     }
 
     const reducerHook = React.useReducer(reducer, iniState);
