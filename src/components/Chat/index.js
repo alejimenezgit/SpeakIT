@@ -27,7 +27,7 @@ function useUsersChat(id){
 export default function Chat(props) {
 
     // CTX 
-    const [allChats] = React.useContext(CTX);
+    const {allChats, sendChatAction, user} = React.useContext(CTX);
     const topics = Object.keys(allChats)
 
     // Local State
@@ -66,7 +66,9 @@ export default function Chat(props) {
                             value={textValue}
                             onChange={(e)=> changeTextValue(e.target.value)}
                         />
-                        <button> send </button>
+                        <button
+                        onClick={() => {sendChatAction({from: user,msg: textValue, topic: activeTopic})
+                                 changeTextValue('')}}> send </button>
                     </div>
                 </div>
             </div>
