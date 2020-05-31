@@ -1,6 +1,7 @@
 import React from 'react'
+import io from 'socket.io-client';
 
-const CTX = React.createContext();
+export const CTX = React.createContext();
 
 
 // retener mi estado mientras mapeamos en un chat que 
@@ -10,7 +11,8 @@ const CTX = React.createContext();
 /*
     msg {
         from: 'user',
-        msg: 'hi'
+        msg: 'hi',
+        user: 'user1
     }
 
     state {
@@ -18,28 +20,64 @@ const CTX = React.createContext();
         user2: [ { msg }, { msg }, { msg }, { msg } ]
     }
 
+
+    msg {
+        from: 'user',
+        msg: 'hi',
+        topic: 'general'
+    }
+
+    state {
+        general: [ { msg }, { msg }, { msg }],
+        topic2: [ { msg }, { msg }, { msg }, { msg } ]
+    }
 */
 
+const iniState = {
+    general: [
+        {from: '( Me )   =', msg: ' hello'},
+        {from: '( Aron ) =', msg: ' hello Alejandro'},
+        {from: '( Me )   =', msg: ' How are you?'},
+        {from: '( Me )   =', msg: ' hello sony'}
+    ],
+    topic2: [
+        {from: '( Aron ) =', msg: ' hello'},
+        {from: '( Me )   =', msg: ' hello Alejandro'},
+        {from: '( Aron ) =', msg: ' by'}
+    ]
+}
 
 function reducer(state, action){
+    const {from,msg,topic} = action.payload;
     switch(action.type){
         case 'RECEIVE_MESSAGE':
             return {
                ...state, 
-               [action.payload.topic] : {
-                   ...state[action.payload.user]
-               }
+               [topic] : [
+                   ...state[topic],
+                   {
+                       from,
+                       msg
+                   }
+               ]
             }
-        defau
+        default:
+            return state;
     }
 }
 
+let socket;
+
 export default function Store(props){
+
+    if(!socket){
+        socket = io(':3001')
+    }
 
     const reducerHook = React.useReducer(reducer, iniState);
 
     return (
-        <CTX.Provider value={}>
+        <CTX.Provider value={reducerHook}>
             {props.children}
         </CTX.Provider>
     )

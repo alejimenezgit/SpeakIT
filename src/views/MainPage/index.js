@@ -3,6 +3,8 @@ import "./styles.scss";
 
 import { withAuth } from '../../context/authContext';
 
+import ContextChat from '../../contextChat/index'
+
 import Modal  from '../../components/Modal'
 import Button from '../../components/Button';
 import Search from '../../components/Search';
@@ -79,7 +81,10 @@ class MainPage extends React.Component {
 
                 { isRegister && this.renderModalisRegister() }
                 { isSearch && <Search user={user}/>}
-                { isChat &&  <Chat user={user}/>}
+                { isChat &&  <ContextChat>
+                                <Chat user={user}/>
+                             </ContextChat> 
+                }
                 { isMatch && <Match user={user}/>}
 
             </div>

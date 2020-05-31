@@ -5,7 +5,7 @@ import ItemChat from '../../components/ItemChat'
 
 import apiClientUser from "../../services/users";
 
-
+import {CTX} from '../../contextChat/index'
 
 function useUsersChat(id){
     const [allUsers, setallUsers] = React.useState([]);
@@ -25,7 +25,16 @@ function useUsersChat(id){
 }
 
 export default function Chat(props) {
+
+    // CTX 
+    const [allChats] = React.useContext(CTX);
+    const topics = Object.keys(allChats)
+
+    // Local State
     const [textValue, changeTextValue] = React.useState('');
+    const [activeTopic, changeActivetopic] = React.useState(topics[0])
+
+    // Mis datos
     let allUsers = useUsersChat(props.user._id);
     return (
         allUsers.length !== 0 ?
@@ -33,14 +42,17 @@ export default function Chat(props) {
             <div className="contain"> 
             <div className="inFlex">
                 <div className="allChats">
-                    {allUsers.allUsers.map((user, index) => {
-                        return <ItemChat index={index} user={user} />
+                    {topics.map((user, index) => {
+                        return <button onClick={e => changeActivetopic(e.target.innerText)}> {user} </button>
                     })}
                 </div>
                 <div className="contextChat">
-                    <div className="nameChat"> Name</div>
+                    <div className="nameChat"> 
+                        <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>   
+                        {activeTopic}
+                    </div>
                     <div className="chat"> Chat 
-                        { [{from:'Alejandro', msg: 'Eres el puto amo'}].map((user, index) => {
+                        { allChats[activeTopic].map((user, index) => {
                             return (
                                 <div key={index} className="inFlex"> 
                                     <div> {user.from} </div>
@@ -65,3 +77,10 @@ export default function Chat(props) {
     );
 
 }
+
+/*
+                    {allUsers.allUsers.map((user, index) => {
+                        return <ItemChat index={index} user={user} />
+                    })}
+
+*/
