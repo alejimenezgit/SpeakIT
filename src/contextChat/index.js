@@ -14,8 +14,8 @@ const CTX = React.createContext();
     }
 
     state {
-        topic1: [ { msg }, { msg }, { msg }],
-        topic2: [ { msg }, { msg }, { msg }, { msg } ]
+        user1: [ { msg }, { msg }, { msg }],
+        user2: [ { msg }, { msg }, { msg }, { msg } ]
     }
 
 */
@@ -27,7 +27,7 @@ function reducer(state, action){
             return {
                ...state, 
                [action.payload.topic] : {
-                   ...state[action.payload.topic]
+                   ...state[action.payload.user]
                }
             }
         defau
