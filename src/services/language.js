@@ -13,6 +13,11 @@ class ApiClient {
   allLanguages() {
     return this.apiClient.get(lan + "/all");
   }
+
+  allById(body) {
+    console.log(body)
+    return this.apiClient.post(lan + "/allById", body)
+  }
 }
 
 const apiClient = new ApiClient();

@@ -28,9 +28,7 @@ class MainPage extends React.Component {
             <div>
                 <div className="modalBG"> </div>
                 <Modal action={this.closeModalRegister}> 
-                    Welcome new user :)
-                    <br/><br/>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOqvD6s_OYlv9eDaNoWQW0x-3cRKUSlEUgLtXafBnjnJPtU1ou&usqp=CAU" alt="img"/>
+                    <img className="imgWelcome" src="./images/welcome.png" alt="img"/>
                 </Modal> 
             </div> 
         )
@@ -64,7 +62,6 @@ class MainPage extends React.Component {
         const {isRegister, isSearch, isChat, isMatch, user} = this.state;
         return (
             <div className="container">
-
                 <div className="inFlex selectContent">
                     <div className="content"> 
                         <Button styles="btnContent" action={this.openChat}> Chat </Button> 
@@ -76,9 +73,7 @@ class MainPage extends React.Component {
                         <Button styles="btnContent" action={this.openMatch}> Match </Button> 
                     </div>
                 </div>
-                
                 <div className="line"></div>
-
                 { isRegister && this.renderModalisRegister() }
                 { isSearch && <Search user={user}/>}
                 { isChat &&  <ContextChat user={user}>
@@ -86,7 +81,6 @@ class MainPage extends React.Component {
                              </ContextChat> 
                 }
                 { isMatch && <Match user={user}/>}
-
             </div>
         );
     }

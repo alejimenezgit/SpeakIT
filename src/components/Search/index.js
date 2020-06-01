@@ -1,9 +1,11 @@
 import React from 'react';
 import "./styles.scss";
 
-import apiClientLanguage from "../../services/language";
 import apiClientUser from "../../services/users";
+import apiClientLanguage from "../../services/language";
 
+import Error from "../../components/Error";
+import Loading from "../../components/Loading";
 import Notification from "../../components/Notification";
 
 import Slider from "react-slick";
@@ -92,11 +94,11 @@ class Search extends React.Component {
     }
 
     showUserByLanguage = () => {
-        console.log(this.state.languagesByUser)
-        const { user } = this.props;
-        console.log({user},'--------------------------------')
         return (
             <div className="boxAllUsers"> 
+                <div className="selectBox pdl-25">
+                    <h2> Users  by Language </h2>
+                </div>
                 {this.state.languagesByUser.map((userToMatch,index)=>{
                     return <div className="boxUser" key={index}> 
                                 {userToMatch.name} <br></br>
@@ -128,9 +130,6 @@ class Search extends React.Component {
                     {this.renderAllLanguages()}
                 </Slider>
                 <div className="box">
-                    <div className="selectBox pdl-25">
-                        <h2> Users  by Language </h2>
-                    </div>
                     {this.showUserByLanguage()}
                 </div>
             </div>
@@ -141,8 +140,8 @@ class Search extends React.Component {
         const {isloading, error} = this.state;
         return  (
             <div>
-                {isloading && !error ? <div> espera </div> : this.renderSearch()}
-                {error && <div> error </div>}
+                {isloading && !error ? <Loading /> : this.renderSearch()}
+                {error && <Error />}
             </div>
         )
     }

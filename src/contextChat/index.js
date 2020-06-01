@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import io from 'socket.io-client';
+
+import Loading from "../components/Loading";
+import Error from "../components/Error";
+
 import apiClientUser from "../services/users";
 import apiClientComunications from "../services/comunication"
+
 export const CTX = React.createContext();
-
-function useUsersChat(id){
-
-}
 
 function reducer(state, action){
     const {from,msg,topic} = action.payload;
@@ -45,6 +46,7 @@ export default function Store(props){
 
     const [allUsers, setallUsers] = React.useState([]);
     const [isloading, setLoading] = React.useState(true);
+    const [isError, setError] = React.useState(false);
 
     useEffect(() => {
         let unmounted = false;
@@ -56,14 +58,12 @@ export default function Store(props){
             }
             setLoading(false)
         })
-        .catch(()=> console.log('error'));
+        .catch(()=> setError(true));
 
         return () => {
             unmounted = true;
         }
     },[]);
-
-
 
     if(allUsers.length !== 0){
         allUsers.forEach((user,index) => {
@@ -84,81 +84,15 @@ export default function Store(props){
             dispatch({type:'RECEIVE_MESSAGE', payload: msg})
         })
     }
-    console.log(props.user)
     const user =  props.user.name;
-    console.log(isloading)
-    if(!isloading){
+    if(!isloading && !isError){
         return (
             <CTX.Provider value={{allChats, sendChatAction, user, idComunication}}>
                 {props.children}
             </CTX.Provider>
         )
-    }else  
-        return 'loading'
+    }else if (isloading)  
+        return <Loading />
+    else if (isError)
+        return <Error />
 }
-
-
-
-// retener mi estado mientras mapeamos en un chat que 
-// recibimos y renderizar la pagina para que el aparezca
-// con un tema sobre el objeto como este
-
-/*
-    msg {
-        from: 'user',
-        msg: 'hi',
-        user: 'user1
-    }
-
-    state {
-        user1: [ { msg }, { msg }, { msg }],
-        user2: [ { msg }, { msg }, { msg }, { msg } ]
-    }
-
-
-    msg {
-        from: 'user',
-        msg: 'hi',
-        topic: 'general'
-    }
-
-    state {
-        general: [ { msg }, { msg }, { msg }],
-        topic2: [ { msg }, { msg }, { msg }, { msg } ]
-    }
-*/
-
-
-
-/* const iniState = {
-    general: [
-        {from: '( Me )   =', msg: ' hello'},
-        {from: '( Aron ) =', msg: ' hello Alejandro'},
-        {from: '( Me )   =', msg: ' How are you?'},
-        {from: '( Me )   =', msg: ' hello sony'}
-    ],
-    topic2: [
-        {from: '( Aron ) =', msg: ' hello'},
-        {from: '( Me )   =', msg: ' hello Alejandro'},
-        {from: '( Aron ) =', msg: ' by'}
-    ]
-}
-*/
-
-
-
-/*
-             let iniState = {}
-            if(users.data.allUsers.length !== 0) {
-                users.data.allUsers.forEach((user,index) => {
-                    iniState[user.name] =  [{from: '( Aron ) =', msg: ' hello'},
-                                           {from: '( Aron ) =', msg: ' hello'}]
-                });
-                setallUsers({
-                    allUsers: iniState
-                })
-            } else {
-                iniState = []
-            }
-            
-*/

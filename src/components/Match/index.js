@@ -4,6 +4,7 @@ import "./styles.scss";
 import ItemMatch from "../../components/ItemMatch";
 import Notification from "../../components/Notification";
 import Loading from "../../components/Loading";
+import Error from "../../components/Error";
 
 import apiClientUser from "../../services/users";
 import apiClientComunications from "../../services/comunication";
@@ -56,18 +57,22 @@ export default class Match extends React.Component {
                 console.log(users);
                 this.setState({
                     allMatches: users.data,
-                    isloading: true
+                    isloading: false
                 })
             })
             .catch(()=> this.setState({ error: true }))
     }
 
     allMatches() {
-       console.log('state', this.state.allMatches);
+       return (
+            <div>
+            <h1> Todos tus matches </h1>
+                {this.state.allMatches.map((user, index) => {
+                        return  <ItemMatch index={index} user={user} addUser={this.addUser} refuseUser={this.refuseUser}/> 
+                })}
+           </div>
        
-       return this.state.allMatches.map((user, index) => {
-            return  <ItemMatch index={index} user={user} addUser={this.addUser} refuseUser={this.refuseUser}/> 
-       })
+       )
     }
     renderMatch = () => {
         const {isloading, error} = this.state;
@@ -83,9 +88,8 @@ export default class Match extends React.Component {
                         Delete User
                     </Notification>
                 }
-                <h1> Todos tus matches </h1>
                 {isloading && !error ? <Loading /> : this.allMatches()}
-                {error && <div> error </div>}
+                {error && <Error />}
             </div>
         )
     }

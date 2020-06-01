@@ -4,7 +4,7 @@ import "./styles.scss";
 //import ItemChat from '../../components/ItemChat'
 
 import {CTX} from '../../contextChat/index'
-
+import Loading from "../../components/Loading";
 
 export default function Chat(props) {
 
@@ -14,11 +14,8 @@ export default function Chat(props) {
 
     // Local State
     const [textValue, changeTextValue] = React.useState('');
-
-    //topics.length > 0 ? textValue = true  : textValue = false;
     const [activeTopic, changeActivetopic] = new React.useState(topics[0])
 
-    
     return (
         JSON.stringify({...allChats}) !== JSON.stringify({}) 
         ?  (<div className="contain"> 
@@ -59,13 +56,6 @@ export default function Chat(props) {
             </div>
         )
         :
-        <div> espera </div>
+        <Loading /> 
     );
 }
-
-/*
-                    {allUsers.allUsers.map((user, index) => {
-                        return <ItemChat index={index} user={user} />
-                    })}
-
-*/
