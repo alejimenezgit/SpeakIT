@@ -1,7 +1,103 @@
 import React, { useEffect } from 'react'
 import io from 'socket.io-client';
 import apiClientUser from "../services/users";
+import apiClientComunications from "../services/comunication"
 export const CTX = React.createContext();
+
+function useUsersChat(id){
+
+}
+
+function reducer(state, action){
+    const {from,msg,topic} = action.payload;
+    switch(action.type){
+        case 'RECEIVE_MESSAGE':
+            return {
+               ...state, 
+               [topic] : [
+                   ...state[topic],
+                   {
+                       from,
+                       msg
+                   }
+               ]
+            }
+        default:
+            return state;
+    }
+}
+
+let socket;
+
+function sendChatAction (value) {
+    console.log(value)
+    apiClientComunications
+            .update(value.id, {chat: value})
+            .then((result) => console.log('chat guardado'))
+            .catch(() => {})
+    socket.emit('chat message', value)
+}
+
+let iniState = [];
+let idComunication = []
+
+export default function Store(props){
+
+    const [allUsers, setallUsers] = React.useState([]);
+    const [isloading, setLoading] = React.useState(true);
+
+    useEffect(() => {
+        let unmounted = false;
+        apiClientUser
+        .oneUserMatches(props.user._id,{status: 'done'})
+        .then((users) => {
+            if(!unmounted){
+                setallUsers(users.data);
+            }
+            setLoading(false)
+        })
+        .catch(()=> console.log('error'));
+
+        return () => {
+            unmounted = true;
+        }
+    },[]);
+
+
+
+    if(allUsers.length !== 0){
+        allUsers.forEach((user,index) => {
+            iniState[user.name] =  user.chat
+        });
+        allUsers.forEach((user,index) => {
+            idComunication[user.name] =  user.idCom
+        });
+        console.log('idsCOm:',idComunication)
+    } 
+
+    const [allChats, dispatch] = React.useReducer(reducer, iniState);
+
+    if(!socket){
+        socket = io(':3002');
+        socket.on('chat message', function(msg){
+            console.log(msg);
+            dispatch({type:'RECEIVE_MESSAGE', payload: msg})
+        })
+    }
+    console.log(props.user)
+    const user =  props.user.name;
+    console.log(isloading)
+    if(!isloading){
+        return (
+            <CTX.Provider value={{allChats, sendChatAction, user, idComunication}}>
+                {props.children}
+            </CTX.Provider>
+        )
+    }else  
+        return 'loading'
+}
+
+
 
 // retener mi estado mientras mapeamos en un chat que 
 // recibimos y renderizar la pagina para que el aparezca
@@ -48,95 +144,9 @@ export const CTX = React.createContext();
     ]
 }
 */
-function useUsersChat(id){
-    const [allUsers, setallUsers] = React.useState([]);
 
-    useEffect(() => {
-        apiClientUser
-        .oneUserMatches(id,{status: 'done'})
-        .then((users) => {
-            setallUsers({
-                allUsers: users.data
-            })
-        })
-        .catch(()=> console.log('error'));
-    }, []);
 
-    return allUsers;
-}
 
-function reducer(state, action){
-    const {from,msg,topic} = action.payload;
-    switch(action.type){
-        case 'RECEIVE_MESSAGE':
-            return {
-               ...state, 
-               [topic] : [
-                   ...state[topic],
-                   {
-                       from,
-                       msg
-                   }
-               ]
-            }
-        default:
-            return state;
-    }
-}
-
-let socket;
-
-function sendChatAction (value) {
-    socket.emit('chat message', value)
-}
-
- const iniState2 = {
-    general: [
-        {from: '( Me )   =', msg: ' hello'},
-        {from: '( Aron ) =', msg: ' hello Alejandro'},
-        {from: '( Me )   =', msg: ' How are you?'},
-        {from: '( Me )   =', msg: ' hello sony'}
-    ],
-    topic2: [
-        {from: '( Aron ) =', msg: ' hello'},
-        {from: '( Me )   =', msg: ' hello Alejandro'},
-        {from: '( Aron ) =', msg: ' by'}
-    ]
-}
-
-let iniState = []
-
-export default function Store(props){
-
-    let allUsers = useUsersChat(props.user._id);
-
-    if(allUsers.length !== 0){
-        allUsers.allUsers.forEach((user,index) => {
-            iniState[user.name] =  [    {from: '( Me )   =', msg: ' hello'},
-                                        {from: '( Aron ) =', msg: ' hello Alejandro'},
-                                        {from: '( Me )   =', msg: ' How are you?'},
-                                        {from: '( Me )   =', msg: ' hello sony'}]
-        });
-    } 
-
-    const [allChats, dispatch] = React.useReducer(reducer, iniState);
-
-    if(!socket){
-        socket = io(':3002');
-        socket.on('chat message', function(msg){
-            console.log(msg);
-            dispatch({type:'RECEIVE_MESSAGE', payload: msg})
-        })
-    }
-    
-    const user = "ale";
-
-    return (
-        <CTX.Provider value={{allChats, sendChatAction, user,  }}>
-            {props.children}
-        </CTX.Provider>
-    )
-}
 /*
              let iniState = {}
             if(users.data.allUsers.length !== 0) {

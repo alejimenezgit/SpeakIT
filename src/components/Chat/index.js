@@ -9,14 +9,14 @@ import {CTX} from '../../contextChat/index'
 export default function Chat(props) {
 
     // CTX 
-    const {allChats, sendChatAction, user} = React.useContext(CTX);
+    const {allChats, sendChatAction, user, idComunication} = React.useContext(CTX);
     const topics = Object.keys({...allChats});
 
     // Local State
     const [textValue, changeTextValue] = React.useState('');
 
     //topics.length > 0 ? textValue = true  : textValue = false;
-    const [activeTopic, changeActivetopic] = new React.useState('paco')
+    const [activeTopic, changeActivetopic] = new React.useState(topics[0])
 
     
     return (
@@ -25,7 +25,7 @@ export default function Chat(props) {
                 <div className="inFlex">
                     <div className="allChats">
                         {topics.map((user, index) => {
-                            return <button onClick={e => changeActivetopic(e.target.innerText)}> {user} </button>
+                            return <button key={index} onClick={e => changeActivetopic(e.target.innerText)}> {user} </button>
                         })}
                     </div>
                     <div className="contextChat">
@@ -37,7 +37,7 @@ export default function Chat(props) {
                             { {...allChats}[activeTopic].map((user, index) => {
                                 return (
                                     <div key={index} className="inFlex"> 
-                                        <div> {user.from} </div>
+                                        <div> {user.from} =  </div>
                                         <div> {user.msg} </div>
                                     </div>
                                 )
@@ -50,7 +50,7 @@ export default function Chat(props) {
                             />
                             <button
                             onClick={() => {
-                                    sendChatAction({from: user,msg: textValue, topic: activeTopic})
+                                    sendChatAction({from: user,msg: textValue, topic: activeTopic, id: idComunication[activeTopic]})
                                     changeTextValue('')
                                     }}> send </button>
                         </div>

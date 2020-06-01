@@ -67,7 +67,8 @@ class Search extends React.Component {
         const body = {
                         sender: user._id, 
                         receiver: userToMatch._id, 
-                        status: "pendiente"
+                        status: "pendiente",
+                        chat: []
                      }
 
         apiClientUser
