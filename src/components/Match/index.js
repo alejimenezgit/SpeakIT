@@ -1,17 +1,22 @@
 import React from 'react';
 import "./styles.scss";
 
-import ItemMatch from "../../components/ItemMatch"
+import ItemMatch from "../../components/ItemMatch";
+import Notification from "../../components/Notification";
+import Loading from "../../components/Loading";
 
-import apiClientComunications from "../../services/comunication";
 import apiClientUser from "../../services/users";
+import apiClientComunications from "../../services/comunication";
+
 
 export default class Match extends React.Component {
 
     state = {
         allMatches: [],
         isloading: false,
-        error: false
+        error: false,
+        toastAdd: false,
+        toastDelete: false,
     }
 
     componentDidMount() {
@@ -22,28 +27,37 @@ export default class Match extends React.Component {
         console.log(id);
         apiClientComunications
             .update(id, {status: 'match'})
-            .then((result) => {this.usersMatches()})
+            .then((result) => {
+                this.setState({toastAdd: true});
+                setTimeout(() => {
+                    this.setState({toastAdd: false})
+                },3000)
+                this.usersMatches()})
             .catch(() => {})
     }
 
-    
-
-    refuseUser = () => {
-        console.log('refuse')
+    refuseUser = (id) => {
+        apiClientComunications
+            .update(id, {status: 'delete'})
+            .then((result) => {
+                this.setState({toastDelete: true})
+                setTimeout(() => {
+                    this.setState({toastDelete: false})
+                },3000)
+                this.usersMatches()})
+            .catch(() => {})
     }
     
     usersMatches = () => {
         this.setState({ isloading: true });
-        console.log('props', this.props)
         apiClientUser
             .oneUserMatches(this.props.user._id,{status: 'match'})
             .then((users) => {
                 console.log(users);
                 this.setState({
                     allMatches: users.data,
-                    isloading: false
+                    isloading: true
                 })
-                console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuusers', users.data)
             })
             .catch(()=> this.setState({ error: true }))
     }
@@ -59,8 +73,18 @@ export default class Match extends React.Component {
         const {isloading, error} = this.state;
         return  (
             <div>
+                { this.state.toastAdd && 
+                    <Notification bottom={35}>
+                        Add User in Chat
+                    </Notification>
+                }
+                { this.state.toastDelete && 
+                    <Notification bottom={35}>
+                        Delete User
+                    </Notification>
+                }
                 <h1> Todos tus matches </h1>
-                {isloading && !error ? <div> espera </div> : this.allMatches()}
+                {isloading && !error ? <Loading /> : this.allMatches()}
                 {error && <div> error </div>}
             </div>
         )

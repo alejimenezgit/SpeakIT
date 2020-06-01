@@ -41,6 +41,7 @@ class AuthProvider extends Component {
                 this.setState({
                     isLoading: false,
                     isLoggedIn: true,
+                    isRegister: false,
                     user,
                 });
             })
@@ -48,6 +49,7 @@ class AuthProvider extends Component {
                 this.setState({
                     isLoading: false,
                     isLoggedIn: false,
+                    isRegister: false,
                     user: null,
                 });
             });
@@ -85,6 +87,7 @@ class AuthProvider extends Component {
             .catch((error) => {
                 this.setState({
                     isLoggedIn: false,
+                    isRegister: false,
                     user: null,
                 });
             });

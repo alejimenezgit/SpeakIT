@@ -4,6 +4,8 @@ import "./styles.scss";
 import apiClientLanguage from "../../services/language";
 import apiClientUser from "../../services/users";
 
+import Notification from "../../components/Notification";
+
 import Slider from "react-slick";
 
 const settings = {
@@ -22,7 +24,9 @@ class Search extends React.Component {
         error: false,
         showLanguage: true,
         languagesByUser: [],
-        user: this.props.user
+        user: this.props.user,
+        toastSucces: false,
+        numBottom: 0
     }
 
     convertObject = (languages) => {
@@ -52,8 +56,12 @@ class Search extends React.Component {
         apiClientUser
             .allbyUser({nativeLanguages:a})
             .then((users) => {
+                let alltheUser = []
+                users.data.forEach((user) => {
+                   if(user._id !== this.state.user._id) alltheUser.push(user)
+                });
                 this.setState({
-                    languagesByUser: users.data,
+                    languagesByUser: alltheUser,
                     showLanguage: true
                 })
             })
@@ -73,7 +81,13 @@ class Search extends React.Component {
 
         apiClientUser
             .createMatch(body)
-            .then((resultado) => console.log(resultado))
+            .then((resultado) => { 
+                console.log(resultado);
+                this.setState({toastSucces: true});
+                setTimeout(() => {
+                    this.setState({toastSucces: false})
+                },3000)
+            })
             .catch(() => console.log('error'))
     }
 
@@ -104,6 +118,11 @@ class Search extends React.Component {
     renderSearch = () => {
         return (
             <div>
+                { this.state.toastSucces && 
+                    <Notification bottom={35}>
+                        Success
+                    </Notification>
+                }
                 <h1> Choose a Language </h1>
                 <Slider {...settings}>
                     {this.renderAllLanguages()}
