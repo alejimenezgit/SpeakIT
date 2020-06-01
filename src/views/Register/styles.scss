@@ -1,0 +1,38 @@
+.input {
+    padding: 10px;
+    border-radius: 1em;
+    border: 1px solid lightgray;
+    margin: 10px 0px;
+    width: 270px;
+    user-select: none; 
+}
+
+.submit {
+    padding: 10px 20px;
+    border-radius: 1em;
+    background-color: white;
+    border: 1px solid lightgray;
+    margin-left: 27%;
+    margin-top: 30px;
+
+    &:hover {
+        background-color: #5f9ea0;
+        color: white;
+    }
+}
+
+.titleForm {
+    padding-left: 30px;
+    border-bottom: 1px solid black ;
+    margin-bottom: 30px;
+}
+
+.msgError {
+    color: red;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+.langerrors{
+    padding-top: 8px;
+}

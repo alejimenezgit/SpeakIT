@@ -17,7 +17,13 @@ class Register extends React.Component {
         password: '',
         match: [],
         nativeLanguages: [],
-        languages: ['']
+        comunications: [],
+        languages: [''],
+        nameError: '',
+        surnamesError: '',
+        emailError: '',
+        passwordError: '',
+        nativeLanguagesError: '',
     }
 
     convertObject = (languages) => {
@@ -53,50 +59,88 @@ class Register extends React.Component {
         })
     }
 
+    validate = () => {
+        let emptyName       = "";
+        let emptySurname    = "";
+        let emptyEmail      = "";
+        let emptyPassword   = "";
+        let lengthPassword  = "";
+        let emptyLanguages  = "";
+
+        const { name, surnames, email, password, nativeLanguages, match } = this.state;
+
+        if(name === "")
+            emptyName = "You must complete the Name";
+        if(surnames === "")
+            emptySurname = "You must complete the Surname"; 
+        if(password === "")
+            emptyPassword = "You must complete the Password";
+        else if (password.length < 4)
+            lengthPassword = "You must complete the Password with more characters";
+        if(email === "")
+            emptyEmail = "You must complete the Email";
+        if(nativeLanguages.length === 0)
+            emptyLanguages = "Select a language as a minimum";
+
+
+        if(emptyName !== "") 
+            this.setState({ nameError: emptyName})
+        if(emptySurname !== "") 
+            this.setState({ surnamesError: emptySurname})
+        if(lengthPassword !== "")
+            this.setState({ passwordError: lengthPassword})
+        if(emptyPassword !== "") 
+            this.setState({ passwordError: emptyPassword})
+        if(emptyEmail !== "") 
+            this.setState({ emailError: emptyEmail})
+        if(emptyLanguages !== "")
+            this.setState({ nativeLanguagesError: emptyLanguages})
+        
+        if(emptyName !== "" || emptySurname !== "" || lengthPassword !== "" ||
+           emptyPassword !== "" || emptyEmail !== "" || emptyLanguages !== "")
+            return false;
+
+        return true;
+    }
+
+
     handleSubmit = (e) => {
         e.preventDefault();
-        const { name, surnames, email, password, nativeLanguages, match } = this.state;
-        const { handleRegister } = this.props;
-            if (email !== "" && password !== "" && name !== "" && surnames !== "" 
-                && nativeLanguages.length > 0) {
-                    let comunications = [];
-                    handleRegister({ name, surnames, email, password, nativeLanguages, comunications, match });
-            }
+        if(this.validate()){
+            const {handleRegister} = this.props
+            const { name, surnames, email, password, nativeLanguages, comunications, match } = this.state;
+            handleRegister({ name, surnames, email, password, nativeLanguages, comunications, match });
+        } 
     };
 
     renderLogin  = () => {
-        const { name, surnames, email, password, languages } = this.state;
+        const { name, surnames, email, password, languages, nameError, surnamesError,
+                 emailError, passwordError, nativeLanguagesError } = this.state;
         return (
-            <div>
-                
-                <div className="container"> 
-                    <form className="form" onSubmit={this.handleSubmit}>  
-                        <Input name="name" type="text" value={name} action={this.handleInput}/>
-                        <label htmlFor="" placeholder="Your Name" alt="Name"></label>
-
-                        <Input name="surnames" type="text" value={surnames} action={this.handleInput}/>
-                        <label htmlFor="" placeholder="Your Surname" alt="Full Name"></label>
-
-                        <Input name="email" type="Email" value={email} action={this.handleInput}/>
-                        <label htmlFor="" placeholder="Your Email Address" alt="Email"></label>
-
-                        <Input name="password" type="Password" value={password} action={this.handleInput}/>
-                        <label htmlFor="" placeholder="Your Password" alt="password"></label>
-                        <br/>
-                        <Select 
-                            closeMenuOnSelect={false}
-                            components={animatedComponents}
-                            isMulti
-                            name="nativeLanguages"
-                            options={languages}
-                            placeholder="Select your native language"
-                            onChange={this.handleCombo}
-                        />
-                        <br/> <br/>
-                        <input type="submit" value="submit" />
-                    </form>
-                </div> 
-            </div>
+            <div className="container"> 
+                <form className="form" onSubmit={this.handleSubmit}> 
+                <div className="titleForm"> <h1> Register </h1> </div>
+                <div className="boxInputs">
+                    <Input name="name" type="text" value={name} placeholder="Your Name..." action={this.handleInput} error={nameError}/>
+                    <Input name="surnames" type="text" value={surnames} placeholder="Your surname..." action={this.handleInput} error={surnamesError}/>
+                    <Input name="email" type="Email" value={email} placeholder="Your email address..." action={this.handleInput} error={emailError}/>
+                    <Input name="password" type="Password" value={password} placeholder="Your password..." action={this.handleInput} error={passwordError}/>
+                </div>
+                    <Select 
+                        closeMenuOnSelect={false}
+                        components={animatedComponents}
+                        isMulti
+                        name="nativeLanguages"
+                        options={languages}
+                        className="selectMulti"
+                        placeholder="Select your native language"
+                        onChange={this.handleCombo}
+                    />
+                        <div className="msgError langerrors"> {nativeLanguagesError} </div>
+                    <br/> <br/>
+                    <input className="submit" type="submit" value="Submit" />
+                </form>
+            </div> 
         );
     }
 

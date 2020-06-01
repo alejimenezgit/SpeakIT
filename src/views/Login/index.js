@@ -34,13 +34,10 @@ class Login extends React.Component {
             <div>
                 <div className="container" onSubmit={this.handleSubmit}> 
                     <form className="form">
-                        <Input name="email" type="Email" value={email} action={this.handleInput}/>
-                        <LabelForm placeholder="Your Email Address" alt="Email"/>
-
-                        <Input name="password" type="Password" value={password} action={this.handleInput}/>
-                        <LabelForm placeholder="Your Password" alt="password"/>
-
-                        <input type="submit" value="submit" />
+                         <div className="titleForm"> <h1> Log in </h1> </div>
+                        <Input name="email" type="Email" placeholder="Email Address" value={email} action={this.handleInput}/>
+                        <Input name="password" type="Password" placeholder="Password" value={password} action={this.handleInput}/>
+                        <input className="submit" type="submit" value="Submit" />
                     </form>
                 </div> 
             </div>
