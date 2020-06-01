@@ -2,7 +2,6 @@ import React from 'react';
 import "./styles.scss";
 
 import Input from '../../components/Input';
-import LabelForm from '../../components/LabelForm';
 
 import { withAuth } from '../../context/authContext';
 
