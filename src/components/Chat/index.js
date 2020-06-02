@@ -5,6 +5,14 @@ import "./styles.scss";
 
 import {CTX} from '../../contextChat/index'
 import Loading from "../../components/Loading";
+import apiClientComunications from "../../services/comunication"
+
+function saveChat(value) {
+    apiClientComunications
+        .pushComunication(value.id, {chat: value})
+        .then((result) => console.log('chat guardado'))
+        .catch(() => {})
+}
 
 export default function Chat(props) {
 
@@ -47,6 +55,7 @@ export default function Chat(props) {
                             onClick={() => {
                                     sendChatAction({from: user,msg: textValue, topic: activeTopic, id: idComunication[activeTopic]})
                                     changeTextValue('')
+                                    saveChat({from: user,msg: textValue, topic: activeTopic, id: idComunication[activeTopic]})
                                     }}> send </button>
                         </div>
                     </div>
