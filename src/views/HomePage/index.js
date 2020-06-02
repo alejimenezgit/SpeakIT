@@ -40,7 +40,7 @@ export default class HomePage extends React.Component {
                     <div class="col-md-6 article-pre__col articleItem">
                         <div class="article-pre__img article-pre__img--second"></div>
                         <h2 class="article-pre__info">
-                        <span class="article-pre__cat">Pricing • </span><span class="article-pre__aut"> by Josh Ford</span> <span class="article-pre__date"> - 5 mins read</span>
+                        <span class="article-pre__cat">Pricing </span>
                         </h2>
                         <h1 class="article-pre__title">Rich Thornett Dan Coderholm about Dribbble in early 2009 </h1>
                     </div>    
@@ -50,7 +50,7 @@ export default class HomePage extends React.Component {
                     <div class="col-md-6 article-pre__col  articleItem">
                         <div class="article-pre__img article-pre__img--fourth"></div>
                         <h2 class="article-pre__info">
-                        <span class="article-pre__cat">Success Stories • </span><span class="article-pre__aut"> by Andrew Lincoln</span> <span class="article-pre__date"> - 5 mins read</span>
+                        <span class="article-pre__cat">Success Stories </span>
                         </h2>
                         <h1 class="article-pre__title">Steward Butterfield told us about his startup Slack </h1>
 
@@ -59,7 +59,7 @@ export default class HomePage extends React.Component {
                     <div class="col-md-6 article-pre__col articleItem">
                         <div class="article-pre__img article-pre__img--third"></div>
                         <h2 class="article-pre__info">
-                        <span class="article-pre__cat">Protips • </span><span class="article-pre__aut"> by Ann Timothy</span> <span class="article-pre__date"> - 5 mins read</span>
+                        <span class="article-pre__cat">Protips </span>
                         </h2>
                         <h1 class="article-pre__title">How to improve analytics using few tools in Bricks </h1>
                     </div>     
