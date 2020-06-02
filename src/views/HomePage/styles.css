@@ -45,6 +45,10 @@ body{
     text-decoration: none;
 }
 
+.boxLinks > a {
+  text-decoration: none;
+}
+
 .btn{
   background-color:#3a9fff;
   border-radius: 20px;

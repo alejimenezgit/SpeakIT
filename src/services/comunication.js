@@ -5,7 +5,7 @@ const cm = '/comunication';
 class ApiClient {
   constructor() {
     this.apiClient = axios.create({
-      baseURL: process.env.REACT_APP_BACKEND_URI,
+      baseURL: process.env.REACT_APP_BACKEND_URI_LOCAL,
       withCredentials: true,
     });
   }
@@ -22,6 +22,9 @@ class ApiClient {
     return this.apiClient.put(`${cm}/update/${id}`, body);
   }
 
+  pushComunication(id, body){
+    return this.apiClient.put(`${cm}/pushComunication/${id}`, body);
+  }
 }
 
 const apiClient = new ApiClient();

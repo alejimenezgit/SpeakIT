@@ -11,11 +11,9 @@ export default function Chat(props) {
     // CTX 
     const {allChats, sendChatAction, user, idComunication} = React.useContext(CTX);
     const topics = Object.keys({...allChats});
-
     // Local State
     const [textValue, changeTextValue] = React.useState('');
     const [activeTopic, changeActivetopic] = new React.useState(topics[0])
-
     return (
         JSON.stringify({...allChats}) !== JSON.stringify({}) 
         ?  (<div className="contain"> 
@@ -34,8 +32,8 @@ export default function Chat(props) {
                             { {...allChats}[activeTopic].map((user, index) => {
                                 return (
                                     <div key={index} className="inFlex"> 
-                                        <div> {user.from} =  </div>
-                                        <div> {user.msg} </div>
+                                        <div> {user.chat.from} =  </div>
+                                        <div> {user.chat.msg} </div>
                                     </div>
                                 )
                             })}

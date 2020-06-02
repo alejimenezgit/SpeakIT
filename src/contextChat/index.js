@@ -10,18 +10,30 @@ import apiClientComunications from "../services/comunication"
 export const CTX = React.createContext();
 
 function reducer(state, action){
-    const {from,msg,topic} = action.payload;
+    console.log(action.payload, 'PAAAAYLOAD')
+    const {from,msg,topic,id} = action.payload;
+
+
+    const a = {...state};
+    console.log(a,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    const b = {[topic]: [...state[topic], {chat :{from,msg,topic,id}}]}
+    console.log(b,'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+
     switch(action.type){
         case 'RECEIVE_MESSAGE':
-            return {
-               ...state, 
-               [topic] : [
-                   ...state[topic],
-                   {
-                       from,
-                       msg
-                   }
-               ]
+            return { 
+                [topic] : [
+                    ...state[topic],
+                    {chat :
+                        {
+                        from,
+                        msg,
+                        topic,
+                        id
+                    }
+                    }
+                    
+                ]
             }
         default:
             return state;
@@ -31,9 +43,9 @@ function reducer(state, action){
 let socket;
 
 function sendChatAction (value) {
-    console.log(value)
+    console.log('valooooooooooooooooooooooooooooor',value)
     apiClientComunications
-            .update(value.id, {chat: value})
+            .pushComunication(value.id, {chat: value})
             .then((result) => console.log('chat guardado'))
             .catch(() => {})
     socket.emit('chat message', value)
@@ -49,20 +61,17 @@ export default function Store(props){
     const [isError, setError] = React.useState(false);
 
     useEffect(() => {
-        let unmounted = false;
-        apiClientUser
-        .oneUserMatches(props.user._id,{status: 'done'})
-        .then((users) => {
-            if(!unmounted){
+         async function getApiUsers() {
+             
+            apiClientUser
+            .oneUserMatches(props.user._id,{status: 'done'})
+            .then((users) => {
                 setallUsers(users.data);
-            }
-            setLoading(false)
-        })
-        .catch(()=> setError(true));
-
-        return () => {
-            unmounted = true;
+                setLoading(false)
+            })
+            .catch(()=> setError(true));
         }
+         getApiUsers();
     },[]);
 
     if(allUsers.length !== 0){
@@ -72,15 +81,15 @@ export default function Store(props){
         allUsers.forEach((user,index) => {
             idComunication[user.name] =  user.idCom
         });
-        console.log('idsCOm:',idComunication)
     } 
 
     const [allChats, dispatch] = React.useReducer(reducer, iniState);
+    console.log(allChats, 'beforeeeeeeeeeeee reduceeeeeeeeeee')
 
     if(!socket){
         socket = io(':3002');
         socket.on('chat message', function(msg){
-            console.log(msg);
+            console.log('reciveee del socket' ,msg);
             dispatch({type:'RECEIVE_MESSAGE', payload: msg})
         })
     }
