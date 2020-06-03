@@ -5,7 +5,7 @@ const user = '/user';
 class ApiClient {
   constructor() {
     this.apiClient = axios.create({
-      baseURL: process.env.REACT_APP_BACKEND_URI_LOCAL,
+      baseURL: process.env.REACT_APP_BACKEND_URI,
       withCredentials: true,
     });
   }
