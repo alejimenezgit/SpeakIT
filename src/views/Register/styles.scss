@@ -1,18 +1,21 @@
 .input {
-    padding: 10px;
+    padding: 15px;
     border-radius: 1em;
     border: 1px solid lightgray;
     margin: 10px 0px;
-    width: 270px;
+    width: 300px;
+    font-size: 20px;
     user-select: none; 
 }
 
 .submit {
-    padding: 10px 20px;
-    border-radius: 1em;
-    background-color: white;
+    padding: 20px 40px;
+    border-radius: 2em;
+    font-size: 20px;
+    background-color: #5f9ea0;
     border: 1px solid lightgray;
-    margin-left: 27%;
+    color: white;
+    margin-left: 21%;
     margin-top: 30px;
 
     &:hover {
