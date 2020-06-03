@@ -19,7 +19,6 @@ export default function Chat(props) {
     const topics = Object.keys({...allChats});
     const [textValue, changeTextValue] = React.useState('');
     const [activeTopic, changeActivetopic] = new React.useState(topics[0])
-
     return (
         JSON.stringify({...allChats}) !== JSON.stringify({}) 
         ?  (<div className="contain inFlex boxChat">
@@ -42,11 +41,12 @@ export default function Chat(props) {
                         </div>
                         <div className="chat"> 
                             { {...allChats}[activeTopic].map((user, index) => {
+                                let sendStyle = activeTopic === user.chat.from;
+                                console.log('STYKE', activeTopic, user.chat.from)
                                 return (
-                                    <div key={index} className="inFlex"> 
-                                        <div> {user.chat.from} =  </div>
-                                        <div> {user.chat.msg} </div>
-                                    </div>
+                                        <div key={index} className={sendStyle ? 'receiveUser' : 'sendUser'}> 
+                                            <div> {user.chat.msg} </div>
+                                        </div>
                                 )
                             })}
                         </div>
