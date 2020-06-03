@@ -1,20 +1,21 @@
 .box{
-    border: 1px solid #5f9ea0;
     background-color: white;
     border-radius: 1em;
     width: 100%;
     margin-top: 50px;
-    background-color: #5f9ea0;
 }
 
-.itemProfile {
-    width: 46%;
+.itemProfiles {
+    width: 45%;
     padding: 1%;
     margin: 1%;
+    border: 1px solid ;
     border-radius: 1em;
     line-height: 20%;
     display: inline-flex;
-    background-color: white;
+    background-color: #F1F4FB;
+    position: relative;
+    color: black;
   }
 
 .imgItem {
@@ -22,15 +23,23 @@
     border: 1px solid black;
     border-radius: 50%;
     margin-right: 20px;
+    background-color: white;
 }
 
-.itemName{
-    padding: 0;
-    margin: 0;
-    line-height: 20px;
-    height: 20px;
+.itemProfile{
+    font-size: 19px;
+    max-width: 300px;
+    position: absolute;
 }
   
 .pl-10 {
     padding-left: 40px;
+}
+
+.pName {
+    top: 30px
+}
+
+.pSurname{
+    top: 55px
 }

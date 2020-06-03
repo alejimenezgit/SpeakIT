@@ -64,7 +64,8 @@ class MainPage extends React.Component {
     }
 
     mainImg = () => {
-        return (<div className="imgMap"> 
+        return (<div className="imgMap">
+                    <div className="titleMap"> Search, do a match, and learn speaking a differents languages </div>
                     <img src="./images/map.png" alt="map"/>
                 </div>)
     }

@@ -1,0 +1,31 @@
+.match {
+    width: 45%;
+    padding: 1%;
+    margin: 1%;
+    border: 1px solid ;
+    border-radius: 1em;
+    line-height: 20%;
+    display: inline-flex;
+    background-color: #F1F4FB;
+    position: relative;
+    color: black;
+}
+
+.imgMatch {
+    width: 40px;
+ }
+
+ 
+.itemMatch{
+    font-size: 19px;
+    max-width: 300px;
+    position: absolute;
+}
+
+.mName {
+    top: 30px
+}
+
+.mSurname {
+    top: 55px
+}

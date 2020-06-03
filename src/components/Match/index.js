@@ -65,8 +65,8 @@ export default class Match extends React.Component {
 
     allMatches() {
        return (
-            <div>
-            <h1> Todos tus matches </h1>
+            <div className="bgMatches">
+                <h1> Todos tus matches </h1>
                 {this.state.allMatches.map((user, index) => {
                         return  <ItemMatch index={index} user={user} addUser={this.addUser} refuseUser={this.refuseUser}/> 
                 })}

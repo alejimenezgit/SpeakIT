@@ -1,23 +1,22 @@
 import React from 'react';
 import "./styles.scss";
 
+import Button from '../../components/Button'
+
 export default class ItemProfile extends React.Component {
 
     renderItemProfile = () => {
-        const { user } = this.props;
+        const { user, index, action } = this.props;
         return (
-            <div className="itemProfile">
+            <div key={index} className="itemProfiles">
                 <img className="imgItem" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>
                 <div>
-                    <div className="itemName"> {user.name} Jimenez </div>
-                    <div className="itemName"> ------ </div>
-                    <div className="itemName"> {user.name} </div>
+                    <div className="itemProfile pName"> {user.name} </div>
+                    <div className="itemProfile pSurname"> {user.surnames} </div>
                 </div>  
-                <div className="pl-10">
-                    <div className="itemName"> </div>
-                    <div className="itemName">  </div>
-                    <div className="itemName"> a </div>
-                </div>  
+                <div>
+                    <button onClick={() => action(user)} className="buttonMatch"> MATCH </button>
+                </div>
             </div>
         );
     }

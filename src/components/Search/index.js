@@ -9,6 +9,7 @@ import Loading from "../../components/Loading";
 import Notification from "../../components/Notification";
 
 import Slider from "react-slick";
+import ItemProfile from '../../components/ItemProfile';
 
 const settings = {
     dots: true,
@@ -72,7 +73,7 @@ class Search extends React.Component {
             })
     }
 
-    match = ({userToMatch}) => {
+    match = (userToMatch) => {
         const {user} = this.state;
         const body = {
                         sender: user._id, 
@@ -95,20 +96,19 @@ class Search extends React.Component {
 
     showUserByLanguage = () => {
         return (
-            <div className="boxAllUsers"> 
-                <div className="selectBox pdl-25">
-                    <h2> Users  by Language </h2>
+            <div>
+                <div className="boxAllUsers"> 
+                    <div className="selectBox pdl-25">
+                        <h2 className="usersTitle"> Users  by Language </h2>
+                    </div>
                 </div>
                 <div>
                 {this.state.languagesByUser.map((userToMatch,index)=>{
-                    return <div className="boxUser" key={index}> 
-                                {userToMatch.name} <br></br>
-                                <button onClick={() => this.match({userToMatch})}> Match </button> 
-                           </div>
+                    return <ItemProfile user={userToMatch} index={index} action={this.match}/> 
                 })}
                 </div>
-                
             </div>
+        
         )
     }
 
@@ -128,7 +128,7 @@ class Search extends React.Component {
                         Success
                     </Notification>
                 }
-                <h1> Choose a Language </h1>
+                <h1> Choose a Language: </h1>
                 <Slider {...settings}>
                     {this.renderAllLanguages()}
                 </Slider>

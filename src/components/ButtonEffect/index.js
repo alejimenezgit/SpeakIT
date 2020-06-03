@@ -6,12 +6,12 @@ export default  class ButtonEffect extends React.Component {
     renderButtonEffect = () => {
         const { action } = this.props; 
        return (
-            <div class="btnEffect" onClick={action}>
+            <div className="btnEffect" onClick={action}>
                     <svg>
                         <defs>
                             <linearGradient id="grad1">
-                                <stop offset="0%" stop-color="#5f9ea0"/>
-                                <stop offset="100%" stop-color="#71c1f7" />
+                                <stop offset="0%" stopColor="#5f9ea0"/>
+                                <stop offset="100%" stopColor="#71c1f7" />
                             </linearGradient>
                         </defs>
                         <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
