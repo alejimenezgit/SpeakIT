@@ -17,14 +17,14 @@ export default  class ItemMatch extends React.Component {
                             </div> 
                         </div>
                     }
-                    {user.state === 'pendiente' && <div> Waiting for a response... </div>}
+                    {user.state === 'pendiente' && <div className="wait"> Waiting for a response... </div>}
                     {user.state === 'addOrNot' && 
-                        <div> 
+                        <div className="response"> 
                             <div> 
-                                <button onClick={()=>addUser(user.idCom)}> Add user </button> 
+                                <button className="buttonResponse" onClick={()=>addUser(user.idCom)}> Add user </button> 
                             </div>
                             <div> 
-                                <button onClick={()=>refuseUser(user.idCom)}> Refuse user </button> 
+                                <button  className="buttonResponse" onClick={()=>refuseUser(user.idCom)}> Refuse user </button> 
                             </div>
                         </div>
                     }

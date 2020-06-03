@@ -15,28 +15,32 @@ function saveChat(value) {
 }
 
 export default function Chat(props) {
-
-    // CTX 
     const {allChats, sendChatAction, user, idComunication} = React.useContext(CTX);
     const topics = Object.keys({...allChats});
-    // Local State
     const [textValue, changeTextValue] = React.useState('');
     const [activeTopic, changeActivetopic] = new React.useState(topics[0])
+
     return (
         JSON.stringify({...allChats}) !== JSON.stringify({}) 
-        ?  (<div className="contain"> 
-                <div className="inFlex">
+        ?  (<div className="contain inFlex boxChat">
                     <div className="allChats">
+                        <div className="alluser"> All the User </div>
                         {topics.map((user, index) => {
-                            return <button key={index} onClick={e => changeActivetopic(e.target.innerText)}> {user} </button>
+                            return <button className="btnChat" key={index} onClick={e => changeActivetopic(e.target.innerText)}> {user} </button>
                         })}
                     </div>
                     <div className="contextChat">
-                        <div className="nameChat"> 
-                            <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>   
-                            {activeTopic}
+                        <div className="userChat"> 
+                            <div>
+                                <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>   
+                            </div>
+                            <div className="nameChatActive">  {activeTopic} </div>
+                            <div className="videoIcon"> 
+                             <img width="40" src="./images/videocall.png" alt="videocall"/>
+                            </div>
+                             
                         </div>
-                        <div className="chat"> Chat 
+                        <div className="chat"> 
                             { {...allChats}[activeTopic].map((user, index) => {
                                 return (
                                     <div key={index} className="inFlex"> 
@@ -46,20 +50,20 @@ export default function Chat(props) {
                                 )
                             })}
                         </div>
-                        <div className="text"> 
+                        <div className="boxSend"> 
                             <input 
+                                className="textInput"
                                 value={textValue}
                                 onChange={(e)=> changeTextValue(e.target.value)}
                             />
-                            <button
+                            <button className="btnSend"
                             onClick={() => {
                                     sendChatAction({from: user,msg: textValue, topic: activeTopic, id: idComunication[activeTopic]})
                                     changeTextValue('')
                                     saveChat({from: user,msg: textValue, topic: activeTopic, id: idComunication[activeTopic]})
-                                    }}> send </button>
+                                    }}> Send </button>
                         </div>
                     </div>
-                </div>
             </div>
         )
         :
