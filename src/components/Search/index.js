@@ -99,12 +99,15 @@ class Search extends React.Component {
                 <div className="selectBox pdl-25">
                     <h2> Users  by Language </h2>
                 </div>
+                <div>
                 {this.state.languagesByUser.map((userToMatch,index)=>{
                     return <div className="boxUser" key={index}> 
                                 {userToMatch.name} <br></br>
                                 <button onClick={() => this.match({userToMatch})}> Match </button> 
                            </div>
                 })}
+                </div>
+                
             </div>
         )
     }
@@ -119,7 +122,7 @@ class Search extends React.Component {
 
     renderSearch = () => {
         return (
-            <div>
+            <div className="boxSearch">
                 { this.state.toastSucces && 
                     <Notification bottom={35}>
                         Success
@@ -139,7 +142,7 @@ class Search extends React.Component {
     render(){
         const {isloading, error} = this.state;
         return  (
-            <div>
+            <div> 
                 {isloading && !error ? <Loading /> : this.renderSearch()}
                 {error && <Error />}
             </div>

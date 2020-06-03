@@ -10,6 +10,7 @@ import Button from '../../components/Button';
 import Search from '../../components/Search';
 import Match from '../../components/Match';
 import Chat from '../../components/Chat';
+import ButtonEffect from '../../components/ButtonEffect';
 
 class MainPage extends React.Component {
 
@@ -19,6 +20,7 @@ class MainPage extends React.Component {
         isChat: false,
         isMatch: false,
         user: this.props.user,
+        isMain: true
     }
 
     closeModalRegister = () => { this.setState({ isRegister: false }) }
@@ -38,7 +40,8 @@ class MainPage extends React.Component {
         this.setState({ 
             isSearch: false,
             isChat: true,
-            isMatch: false
+            isMatch: false,
+            isMain: false
         })
     }
 
@@ -46,7 +49,8 @@ class MainPage extends React.Component {
         this.setState({
             isSearch: true,
             isChat: false,
-            isMatch: false
+            isMatch: false,
+            isMain: false
         })
     }
 
@@ -54,26 +58,34 @@ class MainPage extends React.Component {
         this.setState({
             isSearch: false,
             isChat: false,
-            isMatch: true
+            isMatch: true,
+            isMain: false
         })
     }
 
+    mainImg = () => {
+        return (<div className="imgMap"> 
+                    <img src="./images/map.png" alt="map"/>
+                </div>)
+    }
+
     renderMainPage  = () => {
-        const {isRegister, isSearch, isChat, isMatch, user} = this.state;
+        const {isRegister, isSearch, isChat, isMatch, user, isMain} = this.state;
         return (
             <div className="container">
                 <div className="inFlex selectContent">
                     <div className="content"> 
-                        <Button styles="btnContent" action={this.openChat}> Chat </Button> 
+                        <ButtonEffect action={this.openChat}> CHAT </ButtonEffect>
                     </div>
                     <div className="content"> 
-                        <Button styles="btnContent" action={this.openSearch}> Search </Button> 
+                        <ButtonEffect action={this.openSearch}> SEARCH </ButtonEffect>
                     </div>
                     <div className="content"> 
-                        <Button styles="btnContent" action={this.openMatch}> Match </Button> 
+                        <ButtonEffect action={this.openMatch}> MATCH </ButtonEffect>
                     </div>
                 </div>
-                <div className="line"></div>
+
+                { isMain && this.mainImg()}
                 { isRegister && this.renderModalisRegister() }
                 { isSearch && <Search user={user}/>}
                 { isChat &&  <ContextChat user={user}>
