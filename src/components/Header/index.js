@@ -12,7 +12,7 @@ class Header extends React.Component {
         return (
             <header className="header">
                 <div className="container">
-                    <Link to={'/'}>
+                    <Link to={ isLoggedIn ? '/mainpage' : '/'}>
                         <div>
                             <img alt="img" className="imgLogo" src="./images/charla.png" /> 
                         </div>

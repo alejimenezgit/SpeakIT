@@ -106,6 +106,12 @@ class AuthProvider extends Component {
                 console.log(error);
             });
         };
+    
+    componentWillUnmount() {
+        this.setState({
+            isRegister: false,
+        });
+    }
 
     render() {
         const { children } = this.props;

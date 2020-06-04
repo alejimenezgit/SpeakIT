@@ -72,16 +72,13 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 ## User model
 ```javascript
     {
-        id_user:        { Type: ObjectId(), required: true, unique: true}
-        name:           { Type: String,     required: true }
-        surnames:       { Type: String,     required: true }
-        foto:           { Type: String      required: true }
-        email:          { type: String,     required: true , unique: true}
-        password:       { Type: String,     required: true }
-        puntuación:     { Type: Number }
-        hash:           { Type: String,     required: true, unique: true}
-        languages:      { Type: Array,      required: true }
-        comunications:  { Type: Array }
+        id_user:          { Type: ObjectId(), required: true, unique: true}
+        name:             { Type: String,     required: true }
+        surnames:         { Type: String,     required: true }
+        email:            { type: String,     required: true , unique: true}
+        password:         { Type: String,     required: true }
+        nativeLanguages:  { Type: Array }
+        comunications:    { Type: ObjectId(), ref: 'Comunication'  }
     }
 ```
 
@@ -92,48 +89,16 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
         language:        { Type: String,     required: true}
     }
 ```
-## LanguageUser model
-```javascript
-    {
-        id_language_user:    { Type: ObjectId(), required: true}
-        level:               { Type: Number,     required: true}
-        id_language:         { Type: ObjectId(), required: true}
-    }
-```
+
 ## Comunication model
 ```javascript
     {
-        id_language_user:    { Type: ObjectId(), required: true}
-        language:            { Type: Number,     required: true}                 // es objectid de language
-        users:               { Type: Array,      required: true}                // Array de objectid de User
+        sender:         { Type: ObjectId(),  required: true}
+        receiver:       { Type: ObjectId(),  required: true}             
+        status:         { Type: String,      required: true} 
+        chat:           { Type: Array }
     }
 ```
-
-#  CRUD 
-### Create:
-    1) A user
-    2) A language
-
-### Read: 
-    1) A user
-    2) A user Radom
-    3) All the Languages
-    4) All the users
-
-### Update: 
-    1) A user
-    2) A language
-
-### Delete: 
-    1) A user
-    2) A language
-
-
-
-
-# Dependencies 
-- ... (tokbox)
-
 
 # Links 
 
@@ -142,6 +107,6 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 |    TRELLO       |  https://trello.com/b/ClMyEmqs/speak-it           |           
 |    GITHUB       |  https://github.com/alejimenezgit/SpeakIT         |  
 |    GITHUB       |  https://github.com/alejimenezgit/API-SpeakIT     |              
-|    HEROKU front |  https://speakitweb.herokuapp.com/                | 
-|    HEROKU back  |  https://apispeakit.herokuapp.com/                |              
-|    SLIDES       |  https://prezi.com/view/30WpoKwQ4Q1gHZ0uvCmI/     |       
+|    HEROKU front |  https://speakproyect.herokuapp.com               | 
+|    HEROKU back  |  https://backendspeakit.herokuapp.com/            |              
+|    SLIDES       |  https://docs.google.com/presentation/d/1yt-0nvfTelu5vgauSA7NJYeb8M9hharbokSweb-IChE/edit?usp=sharing   |       

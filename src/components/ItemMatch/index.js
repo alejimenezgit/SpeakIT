@@ -5,9 +5,9 @@ export default  class ItemMatch extends React.Component {
 
     render(){
         const {index,user, addUser, refuseUser } = this.props;
-        return <div key={index} className="match"> 
+        return <div  className="match"> 
                     {user.state !== 'match' && 
-                        <div>
+                        <div key={index}>
                             <div>
                                 <img className="imgMatch" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>
                             </div>

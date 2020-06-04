@@ -67,6 +67,8 @@ export default function Chat(props) {
             </div>
         )
         :
-        <Loading /> 
+        <div className="contain inFlex boxChat">
+           <h1> No chats yet </h1>
+        </div>
     );
 }

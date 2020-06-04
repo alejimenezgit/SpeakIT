@@ -49,6 +49,7 @@ export default class Match extends React.Component {
     }
     
     usersMatches = () => {
+        console.log(this.props.user)
         this.setState({ isloading: true });
         apiClientUser
             .oneUserMatches(this.props.user._id,{status: 'match'})

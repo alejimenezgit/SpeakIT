@@ -94,6 +94,7 @@ class Search extends React.Component {
     }
 
     showUserByLanguage = () => {
+        console.log(this.state.languagesByUser)
         return (
             <div>
                 <div className="boxAllUsers"> 

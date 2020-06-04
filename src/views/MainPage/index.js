@@ -20,20 +20,28 @@ class MainPage extends React.Component {
         isChat: false,
         isMatch: false,
         user: this.props.user,
-        isMain: true
+        isMain: true,
+        closeModal: false
     }
 
-    closeModalRegister = () => { this.setState({ isRegister: false }) }
+    closeModalRegister = () => { this.setState({ 
+        isRegister: false,
+        closeModal: true
+     }) 
+    }
 
     renderModalisRegister = () => {
-        return (
-            <div>
-                <div className="modalBG"> </div>
-                <Modal action={this.closeModalRegister}> 
-                    <img className="imgWelcome" src="./images/welcome.png" alt="img"/>
-                </Modal> 
-            </div> 
-        )
+        if(!this.state.closeModal){
+            return (
+                <div>
+                    <div className="modalBG"> </div>
+                    <Modal action={this.closeModalRegister}> 
+                        <img className="imgWelcome" src="./images/welcome.png" alt="img"/>
+                    </Modal> 
+                </div> 
+            )
+        }
+       
     }
 
     openChat = () => {
@@ -87,7 +95,6 @@ class MainPage extends React.Component {
                 </div>
 
                 { isMain && this.mainImg()}
-                { isRegister && this.renderModalisRegister() }
                 { isSearch && <Search user={user}/>}
                 { isChat &&  <ContextChat user={user}>
                                 <Chat user={user}/>
