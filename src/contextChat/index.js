@@ -38,7 +38,7 @@ function sendChatAction (value) {
     socket.emit('chat message', value)
 }
 
-let iniState = [];
+let iniState = [];  
 
 
 export default function Store(props){
