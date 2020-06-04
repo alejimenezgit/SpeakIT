@@ -124,3 +124,18 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 
 # How to use
 
+The website is not designed for mobile, only computer and tablet
+
+Without being registered you can access:
+     - / = contains information about the web
+     - / login = login access with a user
+     - / register = access to the user creation form
+
+Once registered / logged in, we access / mainpage, which contains three parts
+     - CHAT = we can chat with users who have an accepted match
+     - SEARCH = search users by native language and make a request
+     - MATCH = see the request (by states) in which if it is sent it will have to wait and if it is received it can be accepted or denied
+
+In the navbar you can access:
+     / profile = you can see our data and modify it
+     or log out to log out

@@ -1,17 +1,14 @@
 import React from 'react';
 import "./styles.scss";
 
-//import ItemChat from '../../components/ItemChat'
-
 import {CTX} from '../../contextChat/index'
-import Loading from "../../components/Loading";
 import apiClientComunications from "../../services/comunication"
 
 function saveChat(value) {
     apiClientComunications
         .pushComunication(value.id, {chat: value})
-        .then((result) => console.log('chat guardado'))
-        .catch(() => {})
+        .then()
+        .catch()
 }
 
 export default function Chat(props) {
@@ -42,7 +39,6 @@ export default function Chat(props) {
                         <div className="chat"> 
                             { {...allChats}[activeTopic].map((user, index) => {
                                 let sendStyle = activeTopic === user.chat.from;
-                                console.log('STYKE', activeTopic, user.chat.from)
                                 return (
                                         <div key={index} className={sendStyle ? 'receiveUser' : 'sendUser'}> 
                                             <div> {user.chat.msg} </div>

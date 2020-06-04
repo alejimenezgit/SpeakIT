@@ -65,7 +65,7 @@ class Register extends React.Component {
         let lengthPassword  = "";
         let emptyLanguages  = "";
 
-        const { name, surnames, email, password, nativeLanguages, match } = this.state;
+        const { name, surnames, email, password, nativeLanguages } = this.state;
 
         if(name === "")
             emptyName = "You must complete the Name";

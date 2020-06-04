@@ -6,7 +6,6 @@ import { withAuth } from '../../context/authContext';
 import ContextChat from '../../contextChat/index'
 
 import Modal  from '../../components/Modal'
-import Button from '../../components/Button';
 import Search from '../../components/Search';
 import Match from '../../components/Match';
 import Chat from '../../components/Chat';
@@ -79,7 +78,7 @@ class MainPage extends React.Component {
     }
 
     renderMainPage  = () => {
-        const {isRegister, isSearch, isChat, isMatch, user, isMain} = this.state;
+        const {isSearch, isChat, isMatch, user, isMain} = this.state;
         return (
             <div className="container">
                 <div className="inFlex selectContent">

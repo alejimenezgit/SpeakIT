@@ -1,7 +1,5 @@
 import React from 'react';
 import "./styles.scss";
-import { withAuth } from '../../context/authContext';
-
 
 export default  class Videochat extends React.Component {
 
