@@ -1,5 +1,9 @@
 # README Modulo3
 
+
+
+![imghome](https://github.com/alejimenezgit/SpeakIT/blob/master/public/images/home.png?raw=true)
+
 # Project Name: 
 SPEAKIT
 
@@ -8,6 +12,7 @@ Alejandro Jimenez Regalon
 
 #  What is SPEAKIT? 
 SPEAKIT is an online web that helps you find a person who speaks the language you want to learn both by video call or chat
+
 
 # Languages 
 - HTML
@@ -41,32 +46,38 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 
 
 # ROUTES del back (api)
-|  Method           |    Endpoint Routes Backend     |     Description                          |   
-|-------------------|--------------------------------|------------------------------------------|
-|    POST           |    `/user/`                    |     Get an user                          | 
-|    GET            |    `/user/random`              |     Get a random user                    |
-|    GET            |    `/user/all`                 |     Get all the users (with param ?)     |
-|    POST           |    `/user/add`                 |     Create an user                       |
-|    PUT            |    `/user/update`              |     Update a user                        | 
-|    DELETE         |    `/user/delete `             |     Delete a user                        |
-|-------------------|--------------------------------|------------------------------------------|
-|    GET            |    `/language/`                |     Get a language                       |
-|    GET            |    `/language/all`             |     Get all the languages                |
-|    POST           |    `/language/add`             |     Create a language                    |
-|    PUT            |    `/language/update`          |     Update a language                    |
-|    DELETE         |    `/language/delete`          |     Delete a language                    |
-|-------------------|--------------------------------|------------------------------------------|
-|    GET            |    `/languageUser/`            |     Get a language by User               |
-|    GET            |    `/languageUser/all`         |     Get all the languages by User        |
-|    POST           |    `/languageUser/add`         |     Create a language by User            |
-|    PUT            |    `/languageUser/update`      |     Update a language by User            |
-|    DELETE         |    `/languageUser/delete`      |     Delete a language by User            |
-|-------------------|--------------------------------|------------------------------------------|
-|    GET            |    `/comunication/`            |     Get a language comunication          |
-|    GET            |    `/comunication/all`         |     Get all the languages comunications  |
-|    POST           |    `/comunication/add`         |     Create a language comunication       |
-|    PUT            |    `/comunication/update`      |     Update a language comunication       |
-|    DELETE         |    `/comunication/delete`      |     Delete a language comunication       |
+|  Method           |    Endpoint Routes Backend                   |     Description                          |   
+|-------------------|----------------------------------------------|------------------------------------------|
+|    POST           |    `/user/`                                  |     Set an user                          | 
+|    GET            |    `/user/:id`                               |     Get an user                          | 
+|    GET            |    `/user/random`                            |     Get a random user                    |
+|    GET            |    `/user/all`                               |     Get all the users (with param ?)     |
+|    POST           |    `/user/add`                               |     Create an user                       |
+|    PUT            |    `/user/update/:id`                        |     Update a user                        | 
+|    DELETE         |    `/user/delete/:id`                        |     Delete a user                        |
+|    POST           |    `/user/oneUserMatches/:id`                |     Get all the users with his status and chat  |
+|    POST           |    `/user/createMatch`                       |     Create match and assign values to users     |
+|    PUT            |    `/user/pushComunication/:id`              |     Push a comunication in a user        |
+|    PUT            |    `/user/pushMatch/:id`                     |     Push a match in a user               |
+|    GET            |    `/user/logout`                            |     Delete session                       |
+|    POST           |    `/user/allbyLanguage`                     |     Get all the users by language        |
+|    GET            |    `/user/whouseris`                         |     Know if I have a session             |
+|-------------------|----------------------------------------------|------------------------------------------|
+|    GET            |    `/language/:id`                           |     Get a language                       |
+|    GET            |    `/language/all`                           |     Get all the languages                |
+|    POST           |    `/language/add`                           |     Create a language                    |
+|    PUT            |    `/language/update/:id`                    |     Update a language                    |
+|    DELETE         |    `/language/delete/:id`                    |     Delete a language                    |
+|    POST           |    `/language/allById`                       |     Find all the languages by id         |
+|-------------------|----------------------------------------------|------------------------------------------|
+|    GET            |    `/comunication/:id`                       |     Get a language comunication          |
+|    GET            |    `/comunication/all`                       |     Get all the languages comunications  |
+|    POST           |    `/comunication/add`                       |     Create a language comunication       |
+|    PUT            |    `/comunication/update/:id`                |     Update a language comunication       |
+|    DELETE         |    `/comunication/delete/:id`                |     Delete a language comunication       |
+|    GET            |    `/comunication/allByIds/:id`              |     Delete all the  language comunication by ids |
+|    PUT            |    `/comunication/pushComunication/:id`      |     add a chat in a comunicatoin       |
+
 
 # MODELS 
 ## User model
@@ -109,4 +120,7 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 |    GITHUB       |  https://github.com/alejimenezgit/API-SpeakIT     |              
 |    HEROKU front |  https://speakproyect.herokuapp.com               | 
 |    HEROKU back  |  https://backendspeakit.herokuapp.com/            |              
-|    SLIDES       |  https://docs.google.com/presentation/d/1yt-0nvfTelu5vgauSA7NJYeb8M9hharbokSweb-IChE/edit?usp=sharing   |       
+|    SLIDES       |  https://docs.google.com/presentation/d/1yt-0nvfTelu5vgauSA7NJYeb8M9hharbokSweb-IChE/edit?usp=sharing   
+
+# How to use
+
