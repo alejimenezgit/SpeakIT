@@ -49,7 +49,6 @@ export default class Match extends React.Component {
     }
     
     usersMatches = () => {
-        console.log(this.props.user)
         this.setState({ isloading: true });
         apiClientUser
             .oneUserMatches(this.props.user._id,{status: 'match'})
@@ -67,7 +66,7 @@ export default class Match extends React.Component {
             <div className="bgMatches">
                 <h1> Todos tus matches </h1>
                 {this.state.allMatches.map((user, index) => {
-                        return  <ItemMatch index={index} user={user} addUser={this.addUser} refuseUser={this.refuseUser}/> 
+                        return  <ItemMatch key={index} user={user} addUser={this.addUser} refuseUser={this.refuseUser}/> 
                 })}
            </div>
        

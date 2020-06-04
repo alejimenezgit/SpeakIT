@@ -10,13 +10,6 @@ export const CTX = React.createContext();
 
 function reducer(state, action){
     const {from,msg,topic,id} = action.payload;
-    console.log({ 
-        [topic] : [
-            ...state[topic],
-            {chat : {from,msg,topic,id }}
-        ]
-    })
-    console.log(...state)
     switch(action.type){
         case 'RECEIVE_MESSAGE':
             return { 
@@ -49,12 +42,12 @@ export default function Store(props){
     const [allChats, dispatch] = React.useReducer(reducer, iniState);
     let idComunication = [];
 
-    let id = props.user._id;
+    
 
     useEffect(() => {
          function getApiUsers() {
             apiClientUser
-            .oneUserMatches(id,{status: 'done'})
+            .oneUserMatches(props.user._id,{status: 'done'})
             .then((users) => {
                 setallUsers(users.data);
                 setLoading(false)
@@ -69,7 +62,7 @@ export default function Store(props){
             setallUsers([])
             socket = false
          }
-    },[id]);
+    },[props.user._id]);
 
     if(allUsers.length > 0){
         allUsers.forEach((user,index) => {

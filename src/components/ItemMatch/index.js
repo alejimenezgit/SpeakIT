@@ -4,10 +4,10 @@ import "./styles.scss";
 export default  class ItemMatch extends React.Component {
 
     render(){
-        const {index,user, addUser, refuseUser } = this.props;
-        return <div  className="match"> 
+        const {user, addUser, refuseUser } = this.props;
+        return <div className="match"> 
                     {user.state !== 'match' && 
-                        <div key={index}>
+                        <div>
                             <div>
                                 <img className="imgMatch" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>
                             </div>
