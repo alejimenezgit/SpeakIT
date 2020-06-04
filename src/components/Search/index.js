@@ -69,7 +69,7 @@ class Search extends React.Component {
                 })
             })
             .catch(()=>{
-                console.log('error')
+               this.setState({error: true})
             })
     }
 
@@ -85,13 +85,12 @@ class Search extends React.Component {
         apiClientUser
             .createMatch(body)
             .then((resultado) => { 
-                console.log(resultado);
                 this.setState({toastSucces: true});
                 setTimeout(() => {
                     this.setState({toastSucces: false})
                 },3000)
             })
-            .catch(() => console.log('error'))
+            .catch(() => this.setState({error: true}))
     }
 
     showUserByLanguage = () => {

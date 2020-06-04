@@ -21,7 +21,6 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.user.nativeLanguages)
         apiClientLanguage
             .allById(this.props.user.nativeLanguages)
             .then((result) => this.setState({languages: result.data}))
@@ -71,11 +70,9 @@ class Profile extends React.Component {
         this.setState({edit: false})
         if(this.validate()){
             const { name, surnames, email} = this.state;
-            console.log('valid')
             apiClientUser
                 .updateUser({ name, surnames, email}, this.props.user._id)
                 .then((response) => {
-                     console.log('response')
                      this.setState({
                          name: name,
                          surnames: surnames,
@@ -133,7 +130,6 @@ class Profile extends React.Component {
     }
 
     render(){
-        console.log(this.state.user)
         return  this.renderProfile()
     }
 }

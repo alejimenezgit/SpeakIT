@@ -42,9 +42,7 @@ class Register extends React.Component {
                     languages: this.convertObject(language.data)
                 });
             })
-            .catch(() => {
-                console.log('no hay languages');
-            });
+            .catch(() => {});
     }
 
     handleInput = (e) => {

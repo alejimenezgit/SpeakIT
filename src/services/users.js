@@ -11,7 +11,6 @@ class ApiClient {
   }
 
   allbyUser(body) {
-    console.log(body)
     return this.apiClient.post(user + "/allbyLanguage", body);
   }
 
@@ -40,7 +39,6 @@ class ApiClient {
   }
 
   oneUserMatches(id,body){
-    console.log(body)
     return this.apiClient.post(`${user}/oneUserMatches/${id}`, body);
   }
 

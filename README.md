@@ -33,8 +33,10 @@ SPEAKIT is an online web that helps you find a person who speaks the language yo
 |-----------------|---------------------
 |   /             |   HomePage  
 |   /login        |   Login    
-|   /register     |   HomePage    
-|   /mainpage     |   Main Page         
+|   /register     |   Home Page    
+|   /mainpage     |   Main Page     
+|   /profile      |   Main Page        
+|   /videochat    |   VideoChat         
 
 
 

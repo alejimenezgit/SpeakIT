@@ -3,7 +3,7 @@ import "./styles.scss";
 import { withAuth } from '../../context/authContext';
 
 
-class Chat extends React.Component {
+export default  class Videochat extends React.Component {
 
     state = {
         userTo: this.props.location.state.user,
@@ -29,5 +29,3 @@ class Chat extends React.Component {
         return  this.renderChat()
     }
 }
-
-export default withAuth(Chat);

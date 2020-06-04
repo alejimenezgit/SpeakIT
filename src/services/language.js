@@ -15,7 +15,6 @@ class ApiClient {
   }
 
   allById(body) {
-    console.log(body)
     return this.apiClient.post(lan + "/allById", body)
   }
 }

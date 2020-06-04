@@ -25,7 +25,6 @@ export default class Match extends React.Component {
     }
 
     addUser = (id) => {
-        console.log(id);
         apiClientComunications
             .update(id, {status: 'match'})
             .then((result) => {
@@ -54,7 +53,6 @@ export default class Match extends React.Component {
         apiClientUser
             .oneUserMatches(this.props.user._id,{status: 'match'})
             .then((users) => {
-                console.log(users);
                 this.setState({
                     allMatches: users.data,
                     isloading: false
@@ -64,7 +62,6 @@ export default class Match extends React.Component {
     }
 
     allMatches() {
-        console.log(this.state.allMatches)
         return (
             <div className="bgMatches">
                 <h1> Todos tus matches </h1>

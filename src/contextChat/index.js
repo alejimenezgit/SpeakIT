@@ -64,7 +64,6 @@ export default function Store(props){
     },[]);
 
     if(allUsers.length > 0){
-        console.log('entra', iniState)
         allUsers.forEach((user,index) => {
             iniState[user.name] =  user.chat
         });
