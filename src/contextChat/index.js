@@ -12,12 +12,10 @@ function reducer(state, action){
     const {from,msg,topic,id} = action.payload;
     switch(action.type){
         case 'RECEIVE_MESSAGE':
-            return { 
-                [topic] : [
-                    ...state[topic],
-                    {chat : {from,msg,topic,id }}
-                ]
-            }
+            return {...state,[topic] : [
+                ...state[topic],
+                {chat : {from,msg,topic,id }}
+            ]}
         case 'NOTHING':
             return {}
         default:
@@ -41,8 +39,6 @@ export default function Store(props){
     const [isError, setError] = React.useState(false);
     const [allChats, dispatch] = React.useReducer(reducer, iniState);
     let idComunication = [];
-
-    
 
     useEffect(() => {
          function getApiUsers() {
