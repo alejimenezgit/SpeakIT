@@ -24,7 +24,7 @@ class Profile extends React.Component {
         apiClientLanguage
             .allById(this.props.user.nativeLanguages)
             .then((result) => this.setState({languages: result.data}))
-            .catch(() => console.log('error'))
+            .catch()
     }
 
     handleInput = (e) => {
