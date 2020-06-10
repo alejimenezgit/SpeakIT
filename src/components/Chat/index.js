@@ -1,6 +1,7 @@
 import React from 'react';
 import "./styles.scss";
 
+import { Link } from "react-router-dom";
 import {CTX} from '../../contextChat/index'
 import apiClientComunications from "../../services/comunication"
 
@@ -16,6 +17,7 @@ export default function Chat(props) {
     const topics = Object.keys({...allChats});
     const [textValue, changeTextValue] = React.useState('');
     const [activeTopic, changeActivetopic] = new React.useState(topics[0])
+    console.log(allChats, 'todos los chats');
     return (
         JSON.stringify({...allChats}) !== JSON.stringify({}) 
         ?  (<div className="contain inFlex boxChat">
@@ -28,7 +30,9 @@ export default function Chat(props) {
                     <div className="contextChat">
                         <div className="userChat"> 
                             <div>
-                                <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>   
+                                <Link to={'/videochat'}> video </Link>
+                                    <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>   
+                                
                             </div>
                             <div className="nameChatActive">  {activeTopic} </div>
                             <div className="videoIcon"> 
@@ -54,7 +58,7 @@ export default function Chat(props) {
                             />
                             <button className="btnSend"
                             onClick={() => {
-                                    sendChatAction({from: user,msg: textValue, topic: activeTopic, id: idComunication[activeTopic]})
+                                    sendChatAction({from: user,msg: textValue, topic: activeTopic, id: idComunication[activeTopic] })
                                     changeTextValue('')
                                     saveChat({from: user,msg: textValue, topic: activeTopic, id: idComunication[activeTopic]})
                                     }}> Send </button>

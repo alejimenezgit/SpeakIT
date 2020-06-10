@@ -1,0 +1,19 @@
+.subscriber {
+    background-color: white;
+    padding: 20px;
+    float: left;
+    position: relative;
+}
+
+.publisher {
+    background-color: yellow;
+    width: 0%;
+    float: left;
+}
+
+.OTPublisherContainer {
+    top: 50px;
+    left: 350px;
+    width: 800px !important;
+    height: 800px !important;
+}
