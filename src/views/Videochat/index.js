@@ -13,7 +13,7 @@ export default  class Videochat extends React.Component {
         isloading: true,
         connected: true,
         apiKey: '46788574',
-        sessionId: '2_MX40Njc4ODU3NH5-MTU5MTg5MjUyODYwMX5iOXRlVGtsUmEwOEYvbjU1UVRlZ1I3K2d-fg',
+        sessionId: '2_MX40Njc4ODU3NH5-MTU5MTg5NDM3NDkxNX5Ja2xJc3dDN1hpemw2UGVtbExnTllPaHd-UH4',
         secret: '7baa057e29bd8b212187cc1c5aace6053f10a3bc'
     }
 
