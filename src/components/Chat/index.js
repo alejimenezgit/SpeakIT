@@ -30,13 +30,13 @@ export default function Chat(props) {
                     <div className="contextChat">
                         <div className="userChat"> 
                             <div>
-                                <Link to={'/videochat'}> video </Link>
-                                    <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>   
-                                
+                                <img width="40" src="https://devshift.biz/wp-content/uploads/2017/04/profile-icon-png-898.png" alt="imgprofile"/>
                             </div>
                             <div className="nameChatActive">  {activeTopic} </div>
-                            <div className="videoIcon"> 
-                             <img width="40" src="./images/videocall.png" alt="videocall"/>
+                            <div className="videoIcon">
+                             <Link to={'/videochat'}> 
+                                <img width="40" src="./images/videocall.png" alt="videocall"/>
+                             </Link>
                             </div>
                              
                         </div>

@@ -1,19 +1,26 @@
 .subscriber {
     background-color: white;
     padding: 20px;
-    float: left;
+    float: right;
     position: relative;
 }
 
 .publisher {
-    background-color: yellow;
-    width: 0%;
+    width: 20%;
     float: left;
 }
 
 .OTPublisherContainer {
     top: 50px;
-    left: 350px;
-    width: 800px !important;
+    width: 1200px !important;
     height: 800px !important;
+   
+}
+
+.chkb{
+    background-color: lightgray;
+    display: flex;
+    top: 77px;
+    padding: 5px;
+    position: absolute;
 }

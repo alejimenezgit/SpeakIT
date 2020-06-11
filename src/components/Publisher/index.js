@@ -8,7 +8,6 @@ class Publisher extends React.Component {
     super(props);
 
     this.state = {
-      error: null,
       audio: true,
       video: true,
       videoSource: 'camera'
@@ -27,14 +26,11 @@ class Publisher extends React.Component {
     (this.state.videoSource !== 'camera') ? this.setState({videoSource: 'camera'}) : this.setState({ videoSource: 'screen' })
   }
 
-  onError = (err) => {
-    this.setState({ error: `Failed to publish: ${err.message}` });
-  }
+
 
   render() {
     return (
       <div className="publisher">
-        Publisher
 
         {this.state.error ? <div id="error">{this.state.error}</div> : null}
 
@@ -44,27 +40,28 @@ class Publisher extends React.Component {
             publishVideo: this.state.video,
             videoSource: this.state.videoSource === 'screen' ? 'screen' : undefined
         }}
-        onError={this.onError}
         />
 
         
+        <div className="chkb">
+          <CheckBox
+            label="Share Screen"
+            onChange={this.changeVideoSource}
+          />
 
-        <CheckBox
-          label="Share Screen"
-          onChange={this.changeVideoSource}
-        />
+          <CheckBox
+            label="Publish Audio"
+            initialChecked={this.state.audio}
+            onChange={this.setAudio}
+          />
 
-        <CheckBox
-          label="Publish Audio"
-          initialChecked={this.state.audio}
-          onChange={this.setAudio}
-        />
-
-        <CheckBox
-          label="Publish Video"
-          initialChecked={this.state.video}
-          onChange={this.setVideo}
-        />
+          <CheckBox
+            label="Publish Video"
+            initialChecked={this.state.video}
+            onChange={this.setVideo}
+          />
+        </div>
+        
 
       </div>
     );

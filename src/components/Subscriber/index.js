@@ -7,7 +7,6 @@ class Subscriber extends React.Component {
     super(props);
 
     this.state = {
-      error: null,
       audio: true,
       video: true
     };
@@ -21,16 +20,10 @@ class Subscriber extends React.Component {
     this.setState({ video });
   }
 
-  onError = (err) => {
-    this.setState({ error: `Failed to subscribe: ${err.message}` });
-  }
-
   render() {
     return (
       <div className="subscriber">
-        Subscriber
-
-        {this.state.error ? <div id="error">{this.state.error}</div> : null}
+        
 
         <OTSubscriber
           properties={{
