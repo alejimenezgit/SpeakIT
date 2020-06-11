@@ -11,7 +11,6 @@ export default  class Videochat extends React.Component {
 
     state = {
         isloading: true,
-        error: null,
         connected: true,
         apiKey: '46671452',
         sessionId: '2_MX40NjY3MTQ1Mn5-MTU4Njc3NTM2MDA2MH5IVGQxSDZVaU9mNWRQdER3eDRoNklQa0d-fg',
@@ -31,9 +30,7 @@ export default  class Videochat extends React.Component {
         });
     }
 
-    onError = (err) => {
-        this.setState({ error: `Failed to connect: ${err.message}` });
-      }
+
 
     renderChat = () => {
         const { apiKey, sessionId, token, isloading } = this.state;
@@ -47,7 +44,6 @@ export default  class Videochat extends React.Component {
                     eventHandlers={this.sessionEvents}
                     onError={this.onError}
                     >
-                    {this.state.error ? <div id="error">{this.state.error}</div> : null}
 
                     <Publisher />
                     <OTStreams>
